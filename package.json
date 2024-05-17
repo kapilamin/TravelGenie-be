@@ -28,5 +28,9 @@
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "appwrite": "^14.0.1",
+    "express": "^4.19.2"
   }
 }
