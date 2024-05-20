@@ -8,6 +8,7 @@ const {
   OAuthProvider,
   AppwriteException,
   Users,
+  Query,
 } = require("node-appwrite");
 
 const client = new Client();
@@ -35,4 +36,5 @@ module.exports = {
   OAuthProvider,
   AppwriteException,
   users,
+  Query,
 };

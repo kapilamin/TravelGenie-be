@@ -1,9 +1,17 @@
-const { Client, Databases, Permission, Role, ID } = require("node-appwrite");
+const {
+  client,
+  account,
+  databases,
+  ID,
+  Permission,
+  Role,
+  OAuthProvider,
+  AppwriteException,
+  users,
+  Query,
+} = require("./appwrite");
 
 // Initialize the Appwrite client
-const endpoint = "https://cloud.appwrite.io/v1";
-const projectId = "664b025500172e0cc60b";
-const apiKey = "YOUR_API_KEY_HERE";
 const databaseId = "664b0461000136d40330";
 const usersCollectionId = "664b04a2000e37a4e0f7";
 const flightsCollectionId = "664b116d00364096c872";
@@ -12,14 +20,6 @@ const activitiesCollectionId = "664b18aa00295019a2b1";
 const bookingsCollectionId = "664b11a7003b76702fe8";
 const itinerariesCollectionId = "664b1648002e754824ee";
 const travelDetailsCollectionId = "664b136000290893618f";
-
-const client = new Client();
-client
-  .setEndpoint(endpoint) // Your Appwrite Endpoint
-  .setProject(projectId) // Your project ID
-  .setKey(apiKey); // Your API key
-
-const databases = new Databases(client);
 
 function seedUsers() {
   const users = [
@@ -261,19 +261,80 @@ function seedTravelDetails() {
     });
 }
 
-// Run all seed functions
-Promise.all([
-  seedUsers(),
-  seedFlights(),
-  seedAccommodations(),
-  seedBookings(),
-  seedItineraries(),
-  seedActivities(),
-  seedTravelDetails(),
-])
-  .then(() => {
-    console.log("All collections seeded successfully.");
-  })
-  .catch((error) => {
-    console.error("Error seeding collections:", error);
+/////////////////////////////////////
+function clearCollection(collectionId) {
+  return new Promise((resolve, reject) => {
+    databases
+      .listDocuments(databaseId, collectionId, [Query.limit(100)])
+      .then((response) => {
+        const deletePromises = response.documents.map((document) =>
+          databases.deleteDocument(databaseId, collectionId, document.$id)
+        );
+
+        // Add a delay of 1 second between delete operations
+        const delayedDeletePromises = deletePromises.map((promise, index) =>
+          promise.then(
+            () => new Promise((res) => setTimeout(res, index * 1000))
+          )
+        );
+
+        return Promise.all(delayedDeletePromises);
+      })
+      .then(() => {
+        console.log(`Cleared collection ${collectionId} successfully.`);
+        resolve();
+      })
+      .catch((error) => {
+        console.error(`Error clearing collection ${collectionId}:`, error);
+        reject(error);
+      });
   });
+}
+
+function clearDatabase() {
+  const collectionIds = [
+    usersCollectionId,
+    flightsCollectionId,
+    accommodationsCollectionId,
+    activitiesCollectionId,
+    bookingsCollectionId,
+    itinerariesCollectionId,
+    travelDetailsCollectionId,
+  ];
+
+  const clearPromises = collectionIds.reduce((promiseChain, collectionId) => {
+    return promiseChain.then(() => clearCollection(collectionId));
+  }, Promise.resolve());
+
+  return clearPromises
+    .then(() => {
+      console.log("All collections cleared successfully.");
+    })
+    .catch((error) => {
+      console.error("Error clearing collections:", error);
+    });
+}
+
+///////////////////////////////////////////////////
+
+// Run all seed functions
+
+function populating() {
+  Promise.all([
+    seedUsers(),
+    seedFlights(),
+    seedAccommodations(),
+    seedBookings(),
+    seedItineraries(),
+    seedActivities(),
+    seedTravelDetails(),
+  ])
+    .then(() => {
+      console.log("All collections seeded successfully.");
+    })
+    .catch((error) => {
+      console.error("Error seeding collections:", error);
+    });
+}
+clearDatabase();
+// populating();
