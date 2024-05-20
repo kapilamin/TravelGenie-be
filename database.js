@@ -38,7 +38,7 @@ function documentCreated(databaseId, collectionId) {
         userId: "user124",
         username: "Kapil",
         email: "anyone@gmail.com",
-        password: "password"
+        password: "password",
       },
       [Permission.read(Role.any())]
     )
@@ -66,7 +66,12 @@ function getSpecificDocument(databaseId, collectionId, documentId) {
 }
 
 // //UPDATING A DOCUMENT
-const updatesObj = { username: "Amin", userId: "user223", email: "Berlin@gmail.com", password:"password123" };
+const updatesObj = {
+  username: "Amin",
+  userId: "user223",
+  email: "Berlin@gmail.com",
+  password: "password123",
+};
 function specificDocumentUpdate(
   databaseId,
   collectionId,
@@ -112,7 +117,6 @@ function OAuth2Authenticated(provider, successURL, failureURL, scopesArr) {
   );
 }
 
-
 // Getting OAuth2 Session
 //-------------------Users-----------------//
 
@@ -120,7 +124,4 @@ function OAuth2Authenticated(provider, successURL, failureURL, scopesArr) {
 // documentCreated(databaseId, collectionId);
 // getSpecificDocument(databaseId, collectionId, documentId);
 // specificDocumentUpdate(databaseId, collectionId, documentId, updatesObj);
-// deletingSpecificDocument(databaseId, collectionId, documentDeleteId);
-
-
-
+deletingSpecificDocument(databaseId, collectionId, documentDeleteId);
