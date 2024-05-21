@@ -20,140 +20,189 @@ const travelDetailsCollectionId = "664b136000290893618f";
 
 function seedUsers(Users) {
   const promises = Users.map((user) =>
-    databases.createDocument(databaseId, usersCollectionId, user.userId, user, [
-      Permission.read(Role.any()),
-      Permission.write(Role.any()),
-    ])
+    databases
+      .createDocument(databaseId, usersCollectionId, user.userId, user, [
+        Permission.read(Role.any()),
+        Permission.write(Role.any()),
+      ])
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Users seeded successfully.");
+      // console.log("Users seeded successfully.");
     })
     .catch((error) => {
       if (error.type === "document_already_exists") {
       }
-      console.error("Error seeding users:", error);
+      // console.error("Error seeding users:", error);
     });
 }
 
 function seedFlights(Flights) {
   const promises = Flights.map((flight) =>
-    databases.createDocument(
-      databaseId,
-      flightsCollectionId,
-      flight.flightId,
-      flight,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        flightsCollectionId,
+        flight.flightId,
+        flight,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Flights seeded successfully.");
+      // console.log("Flights seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding flights:", error);
+      // console.error("Error seeding flights:", error);
     });
 }
 
 function seedAccommodations(Accommodations) {
   const promises = Accommodations.map((accommodation) =>
-    databases.createDocument(
-      databaseId,
-      accommodationsCollectionId,
-      accommodation.accommodationId,
-      accommodation,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        accommodationsCollectionId,
+        accommodation.accommodationId,
+        accommodation,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Accommodations seeded successfully.");
+      // console.log("Accommodations seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding accommodations:", error);
+      // console.error("Error seeding accommodations:", error);
     });
 }
 
 function seedBookings(Bookings) {
   const promises = Bookings.map((booking) =>
-    databases.createDocument(
-      databaseId,
-      bookingsCollectionId,
-      booking.bookingId,
-      booking,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        bookingsCollectionId,
+        booking.bookingId,
+        booking,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Bookings seeded successfully.");
+      // console.log("Bookings seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding bookings:", error);
+      // console.error("Error seeding bookings:", error);
     });
 }
 
 function seedItineraries(Itineraries) {
   const promises = Itineraries.map((itinerary) =>
-    databases.createDocument(
-      databaseId,
-      itinerariesCollectionId,
-      itinerary.itineraryId,
-      itinerary,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        itinerariesCollectionId,
+        itinerary.itineraryId,
+        itinerary,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Itineraries seeded successfully.");
+      // console.log("Itineraries seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding itineraries:", error);
+      // console.error("Error seeding itineraries:", error);
     });
 }
 
 function seedActivities(Activities) {
   const promises = Activities.map((activity) =>
-    databases.createDocument(
-      databaseId,
-      activitiesCollectionId,
-      activity.activityId,
-      activity,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        activitiesCollectionId,
+        activity.activityId,
+        activity,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Activities seeded successfully.");
+      // console.log("Activities seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding activities:", error);
+      // console.error("Error seeding activities:", error);
     });
 }
 
 function seedTravelDetails(TravelDetails) {
   const promises = TravelDetails.map((details) =>
-    databases.createDocument(
-      databaseId,
-      travelDetailsCollectionId,
-      details.detailsId,
-      details,
-      [Permission.read(Role.any()), Permission.write(Role.any())]
-    )
+    databases
+      .createDocument(
+        databaseId,
+        travelDetailsCollectionId,
+        details.detailsId,
+        details,
+        [Permission.read(Role.any()), Permission.write(Role.any())]
+      )
+      .catch((error) => {
+        if (error.type === "document_already_exists") {
+          return;
+        }
+        throw error;
+      })
   );
 
   return Promise.all(promises)
     .then(() => {
-      console.log("Travel details seeded successfully.");
+      // console.log("Travel details seeded successfully.");
     })
     .catch((error) => {
-      console.error("Error seeding travel details:", error);
+      // console.error("Error seeding travel details:", error);
     });
 }
 
@@ -167,9 +216,9 @@ async function addCollections() {
     await seedItineraries(Itineraries);
     await seedActivities(Activities);
     await seedTravelDetails(TravelDetails);
-    console.log("All collections seeded successfully.");
+    // console.log("All collections seeded successfully.");
   } catch (error) {
-    console.error("Error seeding collections:", error);
+    // console.error("Error seeding collections:", error);
   }
 }
 
@@ -188,12 +237,20 @@ async function clearCollections() {
     try {
       const response = await databases.listDocuments(databaseId, collectionId);
       const deletePromises = response.documents.map((document) =>
-        databases.deleteDocument(databaseId, collectionId, document.$id)
+        databases
+          .deleteDocument(databaseId, collectionId, document.$id)
+          .catch((error) => {
+            if (error.type === "document_not_found") {
+              return;
+            }
+            throw error;
+          })
       );
       await Promise.all(deletePromises);
-      console.log(`Cleared collection ${collectionId} successfully.`);
+      // console.log(`Cleared collection ${collectionId} successfully.`);
     } catch (error) {
-      console.error(`Error clearing collection ${collectionId}:`, error);
+      //catch and handle the undefined error
+      // console.error(`Error clearing collection ${collectionId}:`, error);
     }
   });
 
@@ -204,5 +261,7 @@ async function clear_and_seed() {
   await clearCollections();
   await addCollections();
 }
+
+// clear_and_seed();
 
 module.exports = { clearCollections, addCollections, clear_and_seed };
