@@ -1,11 +1,10 @@
-const {databases} = require('../appwrite')
-console.log(databases);
+const {databases} = require('../db/appwrite')
 
 // LISTING DOCUMENTS
 function fetchFlights () {
     const collectionId = '664b116d00364096c872';
     const databaseId = '664b0461000136d40330';
-    databases
+    return databases
     .listDocuments(databaseId, collectionId)
     .then((response) => {
 

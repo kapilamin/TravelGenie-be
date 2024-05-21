@@ -8,7 +8,7 @@ const {
   OAuthProvider,
   AppwriteException,
   users,
-} = require("./appwrite");
+} = require("./db/appwrite");
 
 const documentId = "664b263e003a910f02b3";
 const collectionId = "664b04a2000e37a4e0f7";

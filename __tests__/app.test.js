@@ -1,11 +1,8 @@
-const { afterEach } = require("node:test");
 const app = require("../app");
 const {
-  addCollections,
-  clearCollections,
   clear_and_seed,
 } = require("../db/seed");
-const request = require("supertest");
+// const request = require("supertest");
 
 beforeEach(async () => {
   await clear_and_seed();
