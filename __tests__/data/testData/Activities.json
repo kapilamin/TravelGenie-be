@@ -1,0 +1,52 @@
+[
+  {
+    "activityId": "ACT123456789",
+    "location": "Paris",
+    "name": "Seine River Cruise",
+    "type": "Tour",
+    "description": "A relaxing cruise along the Seine River with views of Paris landmarks.",
+    "price": 30,
+    "startTime": "18:00",
+    "endTime": "20:00"
+  },
+  {
+    "activityId": "ACT234567890",
+    "location": "Paris",
+    "name": "Louvre Museum Tour",
+    "type": "Tour",
+    "description": "Guided tour of the famous Louvre Museum showcasing its renowned art collections.",
+    "price": 25,
+    "startTime": "10:00",
+    "endTime": "12:00"
+  },
+  {
+    "activityId": "ACT345678901",
+    "location": "Paris",
+    "name": "Eiffel Tower Summit Access",
+    "type": "Tour",
+    "description": "Experience breathtaking views of Paris from the summit of the iconic Eiffel Tower.",
+    "price": 40,
+    "startTime": "09:00",
+    "endTime": "11:00"
+  },
+  {
+    "activityId": "ACT456789012",
+    "location": "Paris",
+    "name": "Montmartre Walking Tour",
+    "type": "Tour",
+    "description": "Explore the charming streets of Montmartre and discover its artistic history.",
+    "price": 20,
+    "startTime": "14:00",
+    "endTime": "16:00"
+  },
+  {
+    "activityId": "ACT567890123",
+    "location": "Paris",
+    "name": "Catacombs of Paris Tour",
+    "type": "Tour",
+    "description": "Descend into the underground catacombs of Paris and discover its eerie history.",
+    "price": 35,
+    "startTime": "13:00",
+    "endTime": "15:00"
+  }
+]

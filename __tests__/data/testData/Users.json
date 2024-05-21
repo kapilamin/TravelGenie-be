@@ -1,0 +1,67 @@
+[
+  {
+    "userId": "USR123456789",
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "password": "hashed_password",
+    "created_at": "2024-05-20T12:00:00.000Z",
+    "flights": [],
+    "accommodation": [],
+    "bookings": [],
+    "travelDetails": [],
+    "itineraries": [],
+    "activities": []
+  },
+  {
+    "userId": "USR234567890",
+    "username": "janedoe",
+    "email": "janedoe@example.com",
+    "password": "hashed_password",
+    "created_at": "2024-05-20T12:00:01.000Z",
+    "flights": [],
+    "accommodation": [],
+    "bookings": [],
+    "travelDetails": [],
+    "itineraries": [],
+    "activities": []
+  },
+  {
+    "userId": "USR345678901",
+    "username": "alice",
+    "email": "alice@example.com",
+    "password": "hashed_password",
+    "created_at": "2024-05-20T12:00:02.000Z",
+    "flights": [],
+    "accommodation": [],
+    "bookings": [],
+    "travelDetails": [],
+    "itineraries": [],
+    "activities": []
+  },
+  {
+    "userId": "USR456789012",
+    "username": "bob",
+    "email": "bob@example.com",
+    "password": "hashed_password",
+    "created_at": "2024-05-20T12:00:03.000Z",
+    "flights": [],
+    "accommodation": [],
+    "bookings": [],
+    "travelDetails": [],
+    "itineraries": [],
+    "activities": []
+  },
+  {
+    "userId": "USR567890123",
+    "username": "charlie",
+    "email": "charlie@example.com",
+    "password": "hashed_password",
+    "created_at": "2024-05-20T12:00:04.000Z",
+    "flights": [],
+    "accommodation": [],
+    "bookings": [],
+    "travelDetails": [],
+    "itineraries": [],
+    "activities": []
+  }
+]
