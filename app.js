@@ -9,6 +9,5 @@ const app = express();
 app.use(express.json());
 
 app.get('/api/flights', getFlights)
-console.log(getFlights);
 
 module.exports = app

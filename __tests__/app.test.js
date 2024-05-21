@@ -5,7 +5,7 @@ const {
 // const request = require("supertest");
 
 beforeEach(async () => {
-  await clear_and_seed();
+  return await clear_and_seed();
 });
 
 describe("GET Bad URLs", () => {
