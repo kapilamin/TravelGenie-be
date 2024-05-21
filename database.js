@@ -124,4 +124,4 @@ function OAuth2Authenticated(provider, successURL, failureURL, scopesArr) {
 // documentCreated(databaseId, collectionId);
 // getSpecificDocument(databaseId, collectionId, documentId);
 // specificDocumentUpdate(databaseId, collectionId, documentId, updatesObj);
-deletingSpecificDocument(databaseId, collectionId, documentDeleteId);
+// deletingSpecificDocument(databaseId, collectionId, documentDeleteId);
