@@ -46,7 +46,10 @@ async function clearCollection(collectionId) {
     );
     await Promise.all(deletePromises);
   } catch (error) {
-    console.error(`Error clearing collection ${collectionId}:`, error);
+    if (error.type === "document_not_found") {
+      return;
+    }
+    throw error;
   }
 }
 

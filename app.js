@@ -26,4 +26,12 @@ app.delete("/api/users/:user_id", deleteUser);
 
 // app.get("/api/flights", getTravelDocuments);
 
+// errorHandling
+app.use((err, req, res, next) => {
+  if (err.code === 404) {
+    res.status(err.code).send({ msg: err.type });
+  }
+  next(err);
+});
+
 module.exports = app;

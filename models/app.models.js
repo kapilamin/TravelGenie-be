@@ -51,10 +51,6 @@ function fetchBookingById(documentId) {
     .getDocument(databaseId, bookingsID, documentId)
     .then((response) => {
       return response;
-    })
-    .catch((error) => {
-      console.error("Error fetching document:", error);
-      throw error; // Ensure the error is thrown to be caught in the controller
     });
 }
 

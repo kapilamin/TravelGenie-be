@@ -40,7 +40,7 @@ function getUsers(req, res) {
     });
 }
 
-function getBookingbyId(req, res) {
+function getBookingbyId(req, res, next) {
   const { booking_id } = req.params;
 
   fetchBookingById(booking_id)
@@ -48,7 +48,8 @@ function getBookingbyId(req, res) {
       res.status(200).send(booking);
     })
     .catch((error) => {
-      return error;
+      // console.log(error);
+      next(error);
     });
 }
 
