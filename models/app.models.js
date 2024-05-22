@@ -56,26 +56,17 @@ function fetchBookingById(documentId) {
 
 function insertBooking(booking) {
   return databases
-    .createDocument(databaseId, bookingsID, booking.bookingId, booking, [
+    .createDocument(databaseId, bookingsID, booking.id, booking, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
     .then((response) => {
       return response;
-    })
-    .catch((error) => {
-      return error;
     });
 }
 
 function removeUser(user_id) {
-  return databases
-    .deleteDocument(databaseId, usersID, user_id)
-
-    .catch((error) => {
-      console.error("Error deleting document:", error);
-      return error;
-    });
+  return databases.deleteDocument(databaseId, usersID, user_id);
 }
 
 module.exports = {

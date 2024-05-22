@@ -33,5 +33,17 @@ app.use((err, req, res, next) => {
   }
   next(err);
 });
+app.use((err, req, res, next) => {
+  if (err.code === 400 && err.type === "document_invalid_structure") {
+    res.status(err.code).send({ msg: err.type });
+  }
+  next(err);
+});
+app.use((err, req, res, next) => {
+  if (err.code === 400 && err.type === "general_argument_invalid") {
+    res.status(err.code).send({ msg: "Invalid data type provided" });
+  }
+  next(err);
+});
 
 module.exports = app;

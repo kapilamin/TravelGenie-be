@@ -48,12 +48,11 @@ function getBookingbyId(req, res, next) {
       res.status(200).send(booking);
     })
     .catch((error) => {
-      // console.log(error);
       next(error);
     });
 }
 
-function postBooking(req, res) {
+function postBooking(req, res, next) {
   const booking = req.body;
 
   insertBooking(booking)
@@ -61,10 +60,10 @@ function postBooking(req, res) {
       res.status(201).send(booking);
     })
     .catch((error) => {
-      return error;
+      next(error);
     });
 }
-function deleteUser(req, res) {
+function deleteUser(req, res, next) {
   const { user_id } = req.params;
 
   removeUser(user_id)
@@ -72,7 +71,7 @@ function deleteUser(req, res) {
       res.status(204).send();
     })
     .catch((error) => {
-      return error;
+      next(error);
     });
 }
 

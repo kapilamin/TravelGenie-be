@@ -31,9 +31,9 @@ describe("GET /api/bookings", () => {
       .get("/api/bookings")
       .expect(200)
       .then(({ body }) => {
-        expect(body.length).toBe(5);
+        expect(body.length).toBe(3);
         body.forEach((booking) => {
-          expect(typeof booking.bookingId).toBe("string");
+          expect(typeof booking.id).toBe("string");
           expect(typeof booking.itineraryId).toBe("string");
           expect(typeof booking.type).toBe("string");
           expect(Array.isArray(booking.details)).toBe(true);
@@ -59,7 +59,7 @@ describe("GET /api/bookings/:booking_id", () => {
       });
   });
 
-  test.only("GET:404 sends an appropriate status and error message when given a valid but non-existent booking_id", () => {
+  test("GET:404 sends an appropriate status and error message when given a valid but non-existent booking_id", () => {
     return request(app)
       .get("/api/bookings/999")
       .expect(404)
@@ -75,11 +75,11 @@ describe("GET /api/users", () => {
       .get("/api/users")
       .expect(200)
       .then(({ body }) => {
-        expect(body.length).toBe(5);
+        expect(body.length).toBe(3);
         expect(Array.isArray(body)).toBe(true);
 
         body.forEach((user) => {
-          expect(typeof user.userId).toBe("string");
+          expect(typeof user.id).toBe("string");
           expect(typeof user.username).toBe("string");
           expect(typeof user.email).toBe("string");
           expect(Array.isArray(user.flights)).toBe(true);
@@ -93,12 +93,12 @@ describe("GET /api/users", () => {
 describe("POST:/api/bookings/", () => {
   test("POST 201 returns the posted item", () => {
     const newBooking = {
-      bookingId: "BK234567894",
-      itineraryId: "itinerary127",
-      type: "cruise",
-      details: ["Cruise details here..."],
-      createdAt: "2024-05-24T16:40:10.000Z",
-      updatedAt: "2024-05-24T16:40:10.000Z",
+      id: "BK987654321",
+      itineraryId: "itinerary456",
+      type: "flight",
+      details: ["Booking details here..."],
+      createdAt: "2024-05-22T08:30:00.000Z",
+      updatedAt: "2024-05-22T08:30:00.000Z",
     };
     return request(app)
       .post("/api/bookings")
@@ -110,30 +110,37 @@ describe("POST:/api/bookings/", () => {
       });
   });
   /////////////////////////
-  test("POST:400 responds with an appropriate status and error message when provided with a bad comment (no comment body)", () => {
-    const newComment = {
-      username: "icellusedkars",
+  test("POST:400 responds with an appropriate status and error message when provided with a missing field (no flight field)", () => {
+    const newBooking = {
+      id: "BK987654321",
+      itineraryId: "itinerary456",
+      details: ["Booking details here..."],
+      createdAt: "2024-05-22T08:30:00.000Z",
+      updatedAt: "2024-05-22T08:30:00.000Z",
     };
     return request(app)
       .post("/api/bookings")
-      .send(newComment)
+      .send(newBooking)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Bad request");
+        expect(body.msg).toBe("document_invalid_structure");
       });
   });
 
   test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
-    const newComment = {
-      username: "John Doe",
-      body: "Hello",
+    const newBooking = {
+      id: 987654321,
+      itineraryId: "itinerary456",
+      details: ["Booking details here..."],
+      createdAt: "2024-05-22T08:30:00.000Z",
+      updatedAt: "2024-05-22T08:30:00.000Z",
     };
     return request(app)
-      .post("/api/articles/Not_an_id/comments")
-      .send(newComment)
+      .post("/api/bookings")
+      .send(newBooking)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Bad request");
+        expect(body.msg).toBe("Invalid data type provided");
       });
   });
 });
@@ -144,10 +151,10 @@ describe("DELETE:204 deletes the specified user and sends no body back", () => {
   });
   test("DELETE:404 responds with an appropriate status and error message when given a non-existent id", () => {
     return request(app)
-      .delete("/api/comments/999")
+      .delete("/api/users/999")
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe("Not found");
+        expect(body.msg).toBe("document_not_found");
       });
   });
 });
