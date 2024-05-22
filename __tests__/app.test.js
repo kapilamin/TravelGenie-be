@@ -90,6 +90,159 @@ describe("GET /api/users", () => {
   });
 });
 
+describe("GET /api/users/:user_id", () => {
+  test("GET status:200, Should get user with the corrrect data", () => {
+    return request(app)
+      .get("/api/users/USR234567890")
+      .expect(200)
+      .then(({ body }) => {
+        expect(typeof body.id).toBe("string");
+        expect(typeof body.username).toBe("string");
+        expect(typeof body.email).toBe("string");
+        expect(Array.isArray(body.flights)).toBe(true);
+        expect(typeof body.created_at).toBe("string");
+        expect(typeof body.updated_at).toBe("string");
+      });
+  });
+
+  test("GET:404 sends an appropriate status and error message when given a valid but non-existent user_id", () => {
+    return request(app)
+      .get("/api/users/999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_not_found");
+      });
+  });
+});
+
+describe("PATCH:/api/users/:user_id", () => {
+  test("PATCH 202 returns the posted item", () => {
+    const userUpdate = {
+      username: "janedoe",
+      password: "not_password",
+      created_at: "2024-05-20T12:00:01.000Z",
+      updated_at: "2024-05-20T12:00:00.000Z",
+    };
+    return request(app)
+      .patch("/api/users/USR234567890")
+      .send(userUpdate)
+      .expect(202)
+      .then(({ body }) => {
+        expect(body.username).toBe(userUpdate.username);
+        expect(body.password).toEqual(userUpdate.password);
+      });
+  });
+
+  test("PATCH:400 responds with an appropriate status and error message when provided with an invalid field (address)", () => {
+    const userUpdate = {
+      username: "janedoe",
+      password: "not_password",
+      created_at: "2024-05-20T12:00:01.000Z",
+      updated_at: "2024-05-20T12:00:00.000Z",
+      address: "CM7777777777777",
+    };
+    return request(app)
+      .patch("/api/users/USR234567890")
+      .send(userUpdate)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_invalid_structure");
+      });
+  });
+
+  test("POST:404 responds with an appropriate status and error message when provided with an invalid id", () => {
+    const userUpdate = {
+      username: "janedoe",
+      password: "not_password",
+      created_at: "2024-05-20T12:00:01.000Z",
+      updated_at: "2024-05-20T12:00:00.000Z",
+    };
+    return request(app)
+      .patch("/api/users/999")
+      .send(userUpdate)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_not_found");
+      });
+  });
+});
+/////////
+describe("POST:/api/users/", () => {
+  test("POST 201 returns the posted item", () => {
+    const newUser = {
+      id: "USR0987654321",
+      username: "johnsmith",
+      email: "johnsmith@example.com",
+      password: "hashed_password2",
+      created_at: "2024-05-21T14:30:15.000Z",
+      updated_at: "2024-05-21T14:30:15.000Z",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body.type).toBe(newUser.type);
+        expect(body.details).toEqual(newUser.details);
+      });
+  });
+
+  test("POST:400 responds with an appropriate status and error message when provided with a missing required field (email)", () => {
+    const newUser = {
+      id: "USR0987654321",
+      username: "johnsmith",
+      // email: "johnsmith@example.com",
+      password: "hashed_password2",
+      created_at: "2024-05-21T14:30:15.000Z",
+      updated_at: "2024-05-21T14:30:15.000Z",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_invalid_structure");
+      });
+  });
+  test.only("POST:400 responds with an appropriate status and error message when provided with a valid attribute with missing entry required field (email)", () => {
+    const newUser = {
+      id: "USR0987654321",
+      username: "johnsmith",
+      email: "",
+      password: "hashed_password2",
+      created_at: "2024-05-21T14:30:15.000Z",
+      updated_at: "2024-05-21T14:30:15.000Z",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.msg).toBe("document_invalid_structure");
+      });
+  });
+
+  test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
+    const newBooking = {
+      id: 987654321,
+      itineraryId: "itinerary456",
+      details: ["Booking details here..."],
+      createdAt: "2024-05-22T08:30:00.000Z",
+      updatedAt: "2024-05-22T08:30:00.000Z",
+    };
+    return request(app)
+      .post("/api/users")
+      .send(newBooking)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid data type provided");
+      });
+  });
+});
+
+////////
+
 describe("POST:/api/bookings/", () => {
   test("POST 201 returns the posted item", () => {
     const newBooking = {
@@ -109,7 +262,7 @@ describe("POST:/api/bookings/", () => {
         expect(body.details).toEqual(newBooking.details);
       });
   });
-  /////////////////////////
+
   test("POST:400 responds with an appropriate status and error message when provided with a missing field (no flight field)", () => {
     const newBooking = {
       id: "BK987654321",

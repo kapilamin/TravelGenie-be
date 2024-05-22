@@ -8,6 +8,9 @@ const {
   postBooking,
   deleteUser,
   getBookingbyId,
+  postUser,
+  getUserById,
+  updateUserById,
 } = require("./controllers/app.controllers");
 
 dotenv.config();
@@ -16,14 +19,20 @@ const app = express();
 
 app.use(express.json());
 
+// users
 app.get("/api", getAllEndpoints);
-app.get("/api/flights", getFlights);
-app.get("/api/bookings", getBookings);
-app.get("/api/bookings/:booking_id", getBookingbyId);
 app.get("/api/users", getUsers);
-app.post("/api/bookings", postBooking);
+app.post("/api/users", postUser);
+app.get("/api/users/:user_id", getUserById);
+app.patch("/api/users/:user_id", updateUserById);
 app.delete("/api/users/:user_id", deleteUser);
 
+// bookings
+app.get("/api/bookings", getBookings);
+app.get("/api/bookings/:booking_id", getBookingbyId);
+app.post("/api/bookings", postBooking);
+
+app.get("/api/flights", getFlights);
 // app.get("/api/flights", getTravelDocuments);
 
 // errorHandling

@@ -9,6 +9,7 @@ const {
   usersID,
   databaseId,
 } = require("../collectionIDs.json");
+const { log } = require("console");
 
 // LISTING DOCUMENTS
 function fetchFlights() {
@@ -69,6 +70,42 @@ function removeUser(user_id) {
   return databases.deleteDocument(databaseId, usersID, user_id);
 }
 
+//////////
+function fetchUserById(user_id) {
+  return databases
+    .getDocument(databaseId, usersID, user_id)
+    .then((response) => {
+      return response;
+    });
+}
+function insertUser(user) {
+  return databases
+    .createDocument(databaseId, usersID, user.id, user, [
+      Permission.read(Role.any()),
+      Permission.write(Role.any()),
+    ])
+    .then((response) => {
+      return response;
+      s;
+    });
+}
+function patchUser(user_id, userUpdate) {
+  return databases
+    .updateDocument(
+      databaseId,
+      usersID,
+      user_id,
+      userUpdate
+      //   [
+      //   Permission.read(Role.any()),
+      //   Permission.write(Role.any()),
+      // ]
+    )
+    .then((response) => {
+      return response;
+    });
+}
+
 module.exports = {
   fetchFlights,
   fetchBookings,
@@ -76,4 +113,7 @@ module.exports = {
   insertBooking,
   removeUser,
   fetchBookingById,
+  fetchUserById,
+  insertUser,
+  patchUser,
 };

@@ -5,6 +5,9 @@ const {
   insertBooking,
   removeUser,
   fetchBookingById,
+  fetchUserById,
+  insertUser,
+  patchUser,
 } = require("../models/app.models");
 const endpoints = require("../endpoints.json");
 
@@ -74,7 +77,43 @@ function deleteUser(req, res, next) {
       next(error);
     });
 }
+///////////////
+function getUserById(req, res, next) {
+  const { user_id } = req.params;
 
+  fetchUserById(user_id)
+    .then((user) => {
+      res.status(200).send(user);
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+function updateUserById(req, res, next) {
+  const { user_id } = req.params;
+  const userUpdate = req.body;
+
+  patchUser(user_id, userUpdate)
+    .then((user) => {
+      console.log(user);
+      res.status(202).send(user);
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+
+function postUser(req, res, next) {
+  const user = req.body;
+
+  insertUser(user)
+    .then((user) => {
+      res.status(201).send(user);
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
 module.exports = {
   getFlights,
   getAllEndpoints,
@@ -83,4 +122,7 @@ module.exports = {
   postBooking,
   deleteUser,
   getBookingbyId,
+  postUser,
+  getUserById,
+  updateUserById,
 };
