@@ -34,9 +34,7 @@ function seedUsers(Users) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Users seeded successfully.");
-    })
+
     .catch((error) => {
       if (error.type === "document_already_exists") {
       }
@@ -63,9 +61,7 @@ function seedFlights(Flights) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Flights seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding flights:", error);
     });
@@ -90,9 +86,7 @@ function seedAccommodations(Accommodations) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Accommodations seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding accommodations:", error);
     });
@@ -117,9 +111,7 @@ function seedBookings(Bookings) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Bookings seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding bookings:", error);
     });
@@ -144,9 +136,7 @@ function seedItineraries(Itineraries) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Itineraries seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding itineraries:", error);
     });
@@ -171,9 +161,7 @@ function seedActivities(Activities) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Activities seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding activities:", error);
     });
@@ -198,9 +186,7 @@ function seedTravelDetails(TravelDetails) {
   );
 
   return Promise.all(promises)
-    .then(() => {
-      // console.log("Travel details seeded successfully.");
-    })
+
     .catch((error) => {
       // console.error("Error seeding travel details:", error);
     });
@@ -218,6 +204,7 @@ async function addCollections() {
     await seedTravelDetails(TravelDetails);
     // console.log("All collections seeded successfully.");
   } catch (error) {
+    return error;
     // console.error("Error seeding collections:", error);
   }
 }
@@ -249,6 +236,7 @@ async function clearCollections() {
       await Promise.all(deletePromises);
       // console.log(`Cleared collection ${collectionId} successfully.`);
     } catch (error) {
+      return error;
       //catch and handle the undefined error
       // console.error(`Error clearing collection ${collectionId}:`, error);
     }

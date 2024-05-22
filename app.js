@@ -6,6 +6,7 @@ const {
   getBookings,
   getUsers,
   postBooking,
+  deleteUser,
 } = require("./controllers/app.controllers");
 
 dotenv.config();
@@ -19,8 +20,7 @@ app.get("/api/flights", getFlights);
 app.get("/api/bookings", getBookings);
 app.get("/api/users", getUsers);
 app.post("/api/bookings", postBooking);
-
-// app.delete("/api/flights", deleteUsers);
+app.delete("/api/users/:user_id", deleteUser);
 
 // app.get("/api/flights", getTravelDocuments);
 

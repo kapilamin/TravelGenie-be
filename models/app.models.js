@@ -1,4 +1,4 @@
-const { databases, users } = require("../db/appwrite");
+const { databases, users, Permission, Role } = require("../db/appwrite");
 const {
   activitiesID,
   bookingsID,
@@ -52,13 +52,27 @@ function insertBooking(booking) {
       Permission.write(Role.any()),
     ])
     .then((response) => {
-      console.log(response);
-      return response.documents;
+      return response;
     })
     .catch((error) => {
-      console.log(err);
       return error;
     });
 }
 
-module.exports = { fetchFlights, fetchBookings, fetchUsers, insertBooking };
+function removeUser(user_id) {
+  return databases
+    .deleteDocument(databaseId, usersID, user_id)
+
+    .catch((error) => {
+      console.error("Error deleting document:", error);
+      return error;
+    });
+}
+
+module.exports = {
+  fetchFlights,
+  fetchBookings,
+  fetchUsers,
+  insertBooking,
+  removeUser,
+};

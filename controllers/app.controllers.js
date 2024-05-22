@@ -3,6 +3,7 @@ const {
   fetchBookings,
   fetchUsers,
   insertBooking,
+  removeUser,
 } = require("../models/app.models");
 const endpoints = require("../endpoints.json");
 
@@ -40,43 +41,26 @@ function getUsers(req, res) {
 function postBooking(req, res) {
   // const { booking_id } = req.params;
   const booking = req.body;
-  console.log(booking, "<<<<<<<<<<<<<");
+  // console.log(booking, "<<<<<<<<<<<<<");
   insertBooking(booking)
-    .then((users) => {
-      console.log(users);
-      res.status(201).send(users);
+    .then((booking) => {
+      res.status(201).send(booking);
     })
     .catch((error) => {
-      console.log(error);
       return error;
     });
 }
+function deleteUser(req, res) {
+  const { user_id } = req.params;
 
-// {
-//   "bookingId": "BK123456789",
-//   "itineraryId": "itinerary123",
-//   "type": "hotel",
-//   "details": ["Booking details here..."],
-//   "createdAt": "2024-05-20T12:00:00.000Z",
-//   "updatedAt": "2024-05-20T12:00:00.000Z"
-// }
-
-// function postCommentByArticleId(req, res, next) {
-//   const { article_id } = req.params;
-//   const { username, body } = req.body;
-
-//   if (!username || !body) {
-//     return res.status(400).send({ msg: "Bad request" });
-//   }
-
-//   insertComment(article_id, username, body)
-//     .then(([data]) => {
-//       res.status(201).send(data);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-// }
+  removeUser(user_id)
+    .then((user) => {
+      res.status(204).send();
+    })
+    .catch((error) => {
+      return error;
+    });
+}
 
 module.exports = {
   getFlights,
@@ -84,4 +68,5 @@ module.exports = {
   getBookings,
   getUsers,
   postBooking,
+  deleteUser,
 };
