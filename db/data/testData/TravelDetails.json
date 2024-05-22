@@ -1,6 +1,6 @@
 [
   {
-    "detailsId": "DTL123456789",
+    "id": "DTL123456789",
     "createdAt": "2024-05-20T12:00:00.000Z",
     "updatedAt": "2024-05-20T12:00:00.000Z",
     "interests": ["hiking", "museums", "food"],
@@ -11,7 +11,7 @@
     "itineraries": "ITR123456789"
   },
   {
-    "detailsId": "DTL234567890",
+    "id": "DTL234567890",
     "createdAt": "2024-05-20T12:00:01.000Z",
     "updatedAt": "2024-05-20T12:00:01.000Z",
     "interests": ["sightseeing", "shopping", "nightlife"],
@@ -22,7 +22,7 @@
     "itineraries": "ITR234567890"
   },
   {
-    "detailsId": "DTL345678901",
+    "id": "DTL345678901",
     "createdAt": "2024-05-20T12:00:02.000Z",
     "updatedAt": "2024-05-20T12:00:02.000Z",
     "interests": ["cultural experiences", "architecture", "local cuisine"],
@@ -31,27 +31,5 @@
     "dateOfDeparture": "2024-08-01T08:00:00Z",
     "dateOfReturn": "2024-08-10T20:00:00Z",
     "itineraries": "ITR345678901"
-  },
-  {
-    "detailsId": "DTL456789012",
-    "createdAt": "2024-05-20T12:00:03.000Z",
-    "updatedAt": "2024-05-20T12:00:03.000Z",
-    "interests": ["nature", "historical sites", "culinary tours"],
-    "location": "Paris, France",
-    "budget": 1700,
-    "dateOfDeparture": "2024-09-01T08:00:00Z",
-    "dateOfReturn": "2024-09-10T20:00:00Z",
-    "itineraries": "ITR456789012"
-  },
-  {
-    "detailsId": "DTL567890123",
-    "createdAt": "2024-05-20T12:00:04.000Z",
-    "updatedAt": "2024-05-20T12:00:04.000Z",
-    "interests": ["art galleries", "wine tasting", "local markets"],
-    "location": "Paris, France",
-    "budget": 1900,
-    "dateOfDeparture": "2024-10-01T08:00:00Z",
-    "dateOfReturn": "2024-10-10T20:00:00Z",
-    "itineraries": "ITR567890123"
   }
 ]

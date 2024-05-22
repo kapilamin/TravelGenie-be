@@ -45,6 +45,19 @@ function fetchUsers() {
       return error;
     });
 }
+
+function fetchBookingById(documentId) {
+  return databases
+    .getDocument(databaseId, bookingsID, documentId)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error("Error fetching document:", error);
+      throw error; // Ensure the error is thrown to be caught in the controller
+    });
+}
+
 function insertBooking(booking) {
   return databases
     .createDocument(databaseId, bookingsID, booking.bookingId, booking, [
@@ -75,4 +88,5 @@ module.exports = {
   fetchUsers,
   insertBooking,
   removeUser,
+  fetchBookingById,
 };

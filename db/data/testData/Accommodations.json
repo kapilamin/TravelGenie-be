@@ -1,6 +1,6 @@
 [
   {
-    "accommodationId": "AC987654321",
+    "id": "AC987654321",
     "name": "Hotel Parisian",
     "location": "123 Champs-Élysées, Paris",
     "checkInDate": "2024-06-15",
@@ -11,47 +11,30 @@
     "amenities": ["Free Wi-Fi", "Breakfast included", "Swimming pool"]
   },
   {
-    "accommodationId": "AC246813579",
-    "name": "Hotel Parisian",
-    "location": "123 Champs-Élysées, Paris",
+    "id": "BC123456789",
+    "name": "Grand Budapest Hotel",
+    "location": "84-86 Grand Avenue, Budapest",
     "checkInDate": "2024-07-05",
     "checkOutDate": "2024-07-10",
-    "roomNumber": "205",
-    "bookingReference": "HP246813579",
-    "pricePerNight": 170,
-    "amenities": ["Free Wi-Fi", "Breakfast included", "Gym"]
+    "roomNumber": "202",
+    "bookingReference": "GB123456789",
+    "pricePerNight": 200,
+    "amenities": ["Free Wi-Fi", "Breakfast included", "Spa", "Gym"]
   },
   {
-    "accommodationId": "AC112233445",
-    "name": "Hotel Parisian",
-    "location": "123 Champs-Élysées, Paris",
-    "checkInDate": "2024-08-10",
-    "checkOutDate": "2024-08-15",
-    "roomNumber": "307",
-    "bookingReference": "HP112233445",
-    "pricePerNight": 160,
-    "amenities": ["Free Wi-Fi", "Breakfast included", "Spa"]
-  },
-  {
-    "accommodationId": "AC555666777",
-    "name": "Hotel Parisian",
-    "location": "123 Champs-Élysées, Paris",
-    "checkInDate": "2024-09-02",
-    "checkOutDate": "2024-09-07",
-    "roomNumber": "412",
-    "bookingReference": "HP555666777",
-    "pricePerNight": 155,
-    "amenities": ["Free Wi-Fi", "Breakfast included", "Sauna"]
-  },
-  {
-    "accommodationId": "AC888999000",
-    "name": "Hotel Parisian",
-    "location": "123 Champs-Élysées, Paris",
-    "checkInDate": "2024-10-15",
-    "checkOutDate": "2024-10-20",
-    "roomNumber": "505",
-    "bookingReference": "HP888999000",
-    "pricePerNight": 165,
-    "amenities": ["Free Wi-Fi", "Breakfast included", "Restaurant"]
+    "id": "DE987654321",
+    "name": "Hilton Tokyo",
+    "location": "6-2 Nishi-Shinjuku, Tokyo",
+    "checkInDate": "2024-08-01",
+    "checkOutDate": "2024-08-07",
+    "roomNumber": "303",
+    "bookingReference": "HT987654321",
+    "pricePerNight": 180,
+    "amenities": [
+      "Free Wi-Fi",
+      "Breakfast included",
+      "Fitness center",
+      "Business center"
+    ]
   }
 ]

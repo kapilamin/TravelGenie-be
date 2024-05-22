@@ -1,6 +1,6 @@
 [
   {
-    "itineraryId": "ITR123456789",
+    "id": "ITR123456789",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",
@@ -9,7 +9,7 @@
     "accommodation": ["accommodation123"]
   },
   {
-    "itineraryId": "ITR234567890",
+    "id": "ITR234567890",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",
@@ -18,30 +18,12 @@
     "accommodation": ["accommodation456"]
   },
   {
-    "itineraryId": "ITR345678901",
+    "id": "ITR345678901",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",
     "destinations": ["Paris", "Lyon"],
     "flights": ["flight789"],
     "accommodation": ["accommodation789"]
-  },
-  {
-    "itineraryId": "ITR456789012",
-    "tripName": "Summer Vacation 2024",
-    "startDate": "2024-06-15",
-    "endDate": "2024-06-25",
-    "destinations": ["Paris", "Lyon"],
-    "flights": ["flight012"],
-    "accommodation": ["accommodation012"]
-  },
-  {
-    "itineraryId": "ITR567890123",
-    "tripName": "Summer Vacation 2024",
-    "startDate": "2024-06-15",
-    "endDate": "2024-06-25",
-    "destinations": ["Paris", "Lyon"],
-    "flights": ["flight345"],
-    "accommodation": ["accommodation345"]
   }
 ]

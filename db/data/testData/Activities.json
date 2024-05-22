@@ -1,6 +1,6 @@
 [
   {
-    "activityId": "ACT123456789",
+    "id": "ACT123456786",
     "location": "Paris",
     "name": "Seine River Cruise",
     "type": "Tour",
@@ -10,43 +10,23 @@
     "endTime": "20:00"
   },
   {
-    "activityId": "ACT234567890",
-    "location": "Paris",
-    "name": "Louvre Museum Tour",
-    "type": "Tour",
-    "description": "Guided tour of the famous Louvre Museum showcasing its renowned art collections.",
+    "id": "ACT654321987",
+    "location": "New York",
+    "name": "Central Park Bike Ride",
+    "type": "Outdoor Activity",
+    "description": "A scenic bike ride through Central Park, experiencing the natural beauty of New York City.",
     "price": 25,
-    "startTime": "10:00",
-    "endTime": "12:00"
-  },
-  {
-    "activityId": "ACT345678901",
-    "location": "Paris",
-    "name": "Eiffel Tower Summit Access",
-    "type": "Tour",
-    "description": "Experience breathtaking views of Paris from the summit of the iconic Eiffel Tower.",
-    "price": 40,
-    "startTime": "09:00",
-    "endTime": "11:00"
-  },
-  {
-    "activityId": "ACT456789012",
-    "location": "Paris",
-    "name": "Montmartre Walking Tour",
-    "type": "Tour",
-    "description": "Explore the charming streets of Montmartre and discover its artistic history.",
-    "price": 20,
     "startTime": "14:00",
     "endTime": "16:00"
   },
   {
-    "activityId": "ACT567890123",
-    "location": "Paris",
-    "name": "Catacombs of Paris Tour",
+    "id": "ACT123456789",
+    "location": "London",
+    "name": "Thames River Evening Cruise",
     "type": "Tour",
-    "description": "Descend into the underground catacombs of Paris and discover its eerie history.",
-    "price": 35,
-    "startTime": "13:00",
-    "endTime": "15:00"
+    "description": "Enjoy a relaxing evening cruise along the Thames River with views of London landmarks.",
+    "price": 40,
+    "startTime": "19:00",
+    "endTime": "21:00"
   }
 ]

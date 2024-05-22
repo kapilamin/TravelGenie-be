@@ -1,6 +1,6 @@
 [
   {
-    "bookingId": "BK123456789",
+    "id": "BK123456789",
     "itineraryId": "itinerary123",
     "type": "hotel",
     "details": ["Booking details here..."],
@@ -8,7 +8,7 @@
     "updatedAt": "2024-05-20T12:00:00.000Z"
   },
   {
-    "bookingId": "BK234567890",
+    "id": "BK234567890",
     "itineraryId": "itinerary123",
     "type": "hotel",
     "details": ["Booking details here..."],
@@ -16,27 +16,11 @@
     "updatedAt": "2024-05-20T12:00:01.000Z"
   },
   {
-    "bookingId": "BK345678901",
+    "id": "BK345678901",
     "itineraryId": "itinerary123",
     "type": "hotel",
     "details": ["Booking details here..."],
     "createdAt": "2024-05-20T12:00:02.000Z",
     "updatedAt": "2024-05-20T12:00:02.000Z"
-  },
-  {
-    "bookingId": "BK456789012",
-    "itineraryId": "itinerary123",
-    "type": "hotel",
-    "details": ["Booking details here..."],
-    "createdAt": "2024-05-20T12:00:03.000Z",
-    "updatedAt": "2024-05-20T12:00:03.000Z"
-  },
-  {
-    "bookingId": "BK567890123",
-    "itineraryId": "itinerary123",
-    "type": "hotel",
-    "details": ["Booking details here..."],
-    "createdAt": "2024-05-20T12:00:04.000Z",
-    "updatedAt": "2024-05-20T12:00:04.000Z"
   }
 ]

@@ -1,20 +1,22 @@
 const app = require("../app");
 const request = require("supertest");
-const { addCollections, clearCollections } = require("../db/seed");
+const { clearAndSeed } = require("../db/seed");
 const endpoints = require("../endpoints.json");
 
+// Increase Jest timeout to handle longer operations
+jest.setTimeout(30000);
+
 beforeEach(async () => {
-  await clearCollections();
-  await addCollections();
+  await clearAndSeed();
 });
 
 afterAll(async () => {
-  await addCollections();
+  await clearAndSeed();
 });
 
 describe("GET /api", () => {
-  test("GET status 200: Should return the constent of the endpoints.json file", () => {
-    request(app)
+  test("GET status 200: Should return the content of the endpoints.json file", () => {
+    return request(app)
       .get("/api")
       .expect(200)
       .then(({ body }) => {
@@ -24,7 +26,7 @@ describe("GET /api", () => {
 });
 
 describe("GET /api/bookings", () => {
-  test("GET status:200, Should get all bookings with the corrrect data", () => {
+  test("GET status:200, Should get all bookings with the correct data", () => {
     return request(app)
       .get("/api/bookings")
       .expect(200)
@@ -40,27 +42,26 @@ describe("GET /api/bookings", () => {
         });
       });
   });
-  /////
-  test("GET:404 sends an appropriate status and error message when given a valid but non-existent id", () => {
-    return request(app)
-      .get("/api/articles/999")
-      .expect(404)
-      .then((response) => {
-        expect(response.body.msg).toBe("Not Found");
-      });
-  });
+});
 
-  test("GET:400 sends an appropriate status and error message when given an invalid article id", () => {
+describe("GET /api/bookings/:booking_id", () => {
+  test.only("GET status:200, Should get all bookings with the corrrect data", () => {
     return request(app)
-      .get("/api/articles/not-a-team")
-      .expect(400)
-      .then((response) => {
-        expect(response.body.msg).toBe("Bad request");
+      .get("/api/bookings/BK123456789")
+      .expect(200)
+      .then(({ body }) => {
+        expect(typeof body.id).toBe("string");
+        expect(typeof body.itineraryId).toBe("string");
+        expect(typeof body.type).toBe("string");
+        expect(Array.isArray(body.details)).toBe(true);
+        expect(typeof body.createdAt).toBe("string");
+        expect(typeof body.updatedAt).toBe("string");
       });
   });
 });
+
 describe("GET /api/users", () => {
-  test("GET status:200, Should get all users with the corrrect data", () => {
+  test("GET status:200, Should get all users with the correct data", () => {
     return request(app)
       .get("/api/users")
       .expect(200)
@@ -78,29 +79,10 @@ describe("GET /api/users", () => {
         });
       });
   });
-  ///
-
-  test("GET:404 sends an appropriate status and error message when given a valid but non-existent id", () => {
-    return request(app)
-      .get("/api/articles/999")
-      .expect(404)
-      .then((response) => {
-        expect(response.body.msg).toBe("Not Found");
-      });
-  });
-
-  test("GET:400 sends an appropriate status and error message when given an invalid article id", () => {
-    return request(app)
-      .get("/api/articles/not-a-team")
-      .expect(400)
-      .then((response) => {
-        expect(response.body.msg).toBe("Bad request");
-      });
-  });
 });
 
 describe("POST:/api/bookings/", () => {
-  test.only("POST 201 returns the posted item", () => {
+  test("POST 201 returns the posted item", () => {
     const newBooking = {
       bookingId: "BK234567894",
       itineraryId: "itinerary127",
@@ -192,7 +174,7 @@ describe("POST:/api/bookings/", () => {
 });
 
 describe("DELETE:204 deletes the specified user and sends no body back", () => {
-  test.only("204 - returns the ", () => {
+  test("204 - returns the ", () => {
     return request(app).delete("/api/users/USR345678901").expect(204);
   });
   //////

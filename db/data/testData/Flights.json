@@ -1,6 +1,6 @@
 [
   {
-    "flightId": "AF987654321",
+    "id": "AF987654321",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",
@@ -10,7 +10,7 @@
     "seatNumber": "15F"
   },
   {
-    "flightId": "AF246813579",
+    "id": "AF246813579",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",
@@ -20,7 +20,7 @@
     "seatNumber": "7C"
   },
   {
-    "flightId": "AF112233445",
+    "id": "AF112233445",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",
@@ -28,25 +28,5 @@
     "arrivalTime": "2024-08-10T13:15:00Z",
     "ticketNumber": "AF112233445",
     "seatNumber": "21D"
-  },
-  {
-    "flightId": "AF555666777",
-    "airline": "Air France",
-    "departureAirport": "JFK",
-    "arrivalAirport": "CDG",
-    "departureTime": "2024-09-02T11:00:00Z",
-    "arrivalTime": "2024-09-02T15:00:00Z",
-    "ticketNumber": "AF555666777",
-    "seatNumber": "3B"
-  },
-  {
-    "flightId": "AF888999000",
-    "airline": "Air France",
-    "departureAirport": "JFK",
-    "arrivalAirport": "CDG",
-    "departureTime": "2024-10-15T14:20:00Z",
-    "arrivalTime": "2024-10-15T18:20:00Z",
-    "ticketNumber": "AF888999000",
-    "seatNumber": "10E"
   }
 ]

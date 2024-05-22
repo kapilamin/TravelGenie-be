@@ -4,6 +4,7 @@ const {
   fetchUsers,
   insertBooking,
   removeUser,
+  fetchBookingById,
 } = require("../models/app.models");
 const endpoints = require("../endpoints.json");
 
@@ -38,10 +39,22 @@ function getUsers(req, res) {
       return error;
     });
 }
+
+function getBookingbyId(req, res) {
+  const { booking_id } = req.params;
+
+  fetchBookingById(booking_id)
+    .then((booking) => {
+      res.status(200).send(booking);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
 function postBooking(req, res) {
-  // const { booking_id } = req.params;
   const booking = req.body;
-  // console.log(booking, "<<<<<<<<<<<<<");
+
   insertBooking(booking)
     .then((booking) => {
       res.status(201).send(booking);
@@ -69,4 +82,5 @@ module.exports = {
   getUsers,
   postBooking,
   deleteUser,
+  getBookingbyId,
 };

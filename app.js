@@ -7,6 +7,7 @@ const {
   getUsers,
   postBooking,
   deleteUser,
+  getBookingbyId,
 } = require("./controllers/app.controllers");
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.get("/api", getAllEndpoints);
 app.get("/api/flights", getFlights);
 app.get("/api/bookings", getBookings);
+app.get("/api/bookings/:booking_id", getBookingbyId);
 app.get("/api/users", getUsers);
 app.post("/api/bookings", postBooking);
 app.delete("/api/users/:user_id", deleteUser);
