@@ -1,5 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv");
+
 const {
   getFlights,
   getAllEndpoints,
@@ -12,8 +12,6 @@ const {
   getUserById,
   updateUserById,
 } = require("./controllers/app.controllers");
-
-dotenv.config();
 
 const app = express();
 

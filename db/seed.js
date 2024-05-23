@@ -1,36 +1,29 @@
-const { databases, Permission, Role } = require("./testDb/appwrite.config");
 const {
-  activitiesID,
-  itinerariesID,
-  travelDetailsID,
-  accommodationID,
-  bookingsID,
-  flightsID,
-  usersID,
-  databaseID,
-} = require("../db/testDb/testCollectionIDs.json");
+  databases,
+  Permission,
+  Role,
+  database_id,
+  activities_collection_id,
+  itineraries_collection_id,
+  travel_details_collection_id,
+  accommodations_collection_id,
+  bookings_collection_id,
+  flights_collection_id,
+  users_collection_id,
+} = require("./appwrite.config");
 
 const Users = require("../db/data/testData/Users.json");
-const Accommodation = require("../db/data/testData/Accommodations.json");
+const Accommodations = require("../db/data/testData/Accommodations.json");
 const Activities = require("../db/data/testData/Activities.json");
 const Bookings = require("../db/data/testData/Bookings.json");
 const Flights = require("../db/data/testData/Flights.json");
 const TravelDetails = require("../db/data/testData/TravelDetails.json");
 const Itineraries = require("../db/data/testData/Itineraries.json");
 
-const databaseId = databaseID;
-const usersCollectionId = usersID;
-const flightsCollectionId = flightsID;
-const accommodationsCollectionId = accommodationID;
-const activitiesCollectionId = activitiesID;
-const bookingsCollectionId = bookingsID;
-const itinerariesCollectionId = itinerariesID;
-const travelDetailsCollectionId = travelDetailsID;
-
 async function seedCollection(collectionId, data) {
   const promises = data.map((item) =>
     databases
-      .createDocument(databaseId, collectionId, item.id, item, [
+      .createDocument(database_id, collectionId, item.id, item, [
         Permission.read(Role.any()),
         Permission.write(Role.any()),
       ])
@@ -49,9 +42,9 @@ async function seedCollection(collectionId, data) {
 
 async function clearCollection(collectionId) {
   try {
-    const response = await databases.listDocuments(databaseId, collectionId);
+    const response = await databases.listDocuments(database_id, collectionId);
     const deletePromises = response.documents.map((document) =>
-      databases.deleteDocument(databaseId, collectionId, document.id)
+      databases.deleteDocument(database_id, collectionId, document.id)
     );
     await Promise.all(deletePromises);
   } catch (error) {
@@ -64,26 +57,26 @@ async function clearCollection(collectionId) {
 
 async function seedAllCollections() {
   const seedPromises = [
-    seedCollection(usersCollectionId, Users),
-    seedCollection(flightsCollectionId, Flights),
-    seedCollection(accommodationsCollectionId, Accommodation),
-    seedCollection(bookingsCollectionId, Bookings),
-    seedCollection(itinerariesCollectionId, Itineraries),
-    seedCollection(activitiesCollectionId, Activities),
-    seedCollection(travelDetailsCollectionId, TravelDetails),
+    seedCollection(users_collection_id, Users),
+    seedCollection(flights_collection_id, Flights),
+    seedCollection(accommodations_collection_id, Accommodations),
+    seedCollection(bookings_collection_id, Bookings),
+    seedCollection(itineraries_collection_id, Itineraries),
+    seedCollection(activities_collection_id, Activities),
+    seedCollection(travel_details_collection_id, TravelDetails),
   ];
   await Promise.all(seedPromises);
 }
 
 async function clearAllCollections() {
   const clearPromises = [
-    clearCollection(usersCollectionId),
-    clearCollection(flightsCollectionId),
-    clearCollection(accommodationsCollectionId),
-    clearCollection(bookingsCollectionId),
-    clearCollection(itinerariesCollectionId),
-    clearCollection(activitiesCollectionId),
-    clearCollection(travelDetailsCollectionId),
+    clearCollection(users_collection_id),
+    clearCollection(flights_collection_id),
+    clearCollection(accommodations_collection_id),
+    clearCollection(bookings_collection_id),
+    clearCollection(itineraries_collection_id),
+    clearCollection(activities_collection_id),
+    clearCollection(travel_details_collection_id),
   ];
   await Promise.all(clearPromises);
 }

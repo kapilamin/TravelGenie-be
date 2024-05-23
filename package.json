@@ -3,7 +3,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "start": "NODE_ENV=production node listen.js",
+    "start:test": "NODE_ENV=test node listen.js"
   },
   "husky": {
     "hooks": {

@@ -1,24 +1,21 @@
+const { databases, users, Permission, Role } = require("../db/appwrite.config");
 const {
-  databases,
-  users,
-  Permission,
-  Role,
-} = require("../db/testDb/appwrite.config");
-const {
-  activitiesID,
-  bookingsID,
-  itinerariesID,
-  travelDetailsID,
-  accommodationID,
-  flightsID,
-  usersID,
-  databaseID,
-} = require("../db/testDb/testCollectionIDs.json");
+  database_id,
+  activities_collection_id,
+  itineraries_collection_id,
+  travel_details_collection_id,
+  accommodation_collection_id,
+  bookings_collection_id,
+  flights_collection_id,
+  users_collection_id,
+} = require("../db/appwrite.config");
+
+// console.log(database_id, activities_collection_id, "<<<<<<<<<<<");
 
 // LISTING DOCUMENTS
 function fetchFlights() {
   return databases
-    .listDocuments(databaseID, flightsID)
+    .listDocuments(database_id, flights_collection_id)
     .then((response) => {
       return response;
     })
@@ -28,7 +25,7 @@ function fetchFlights() {
 }
 function fetchBookings() {
   return databases
-    .listDocuments(databaseID, bookingsID)
+    .listDocuments(database_id, bookings_collection_id)
     .then((response) => {
       return response.documents;
     })
@@ -38,7 +35,7 @@ function fetchBookings() {
 }
 function fetchUsers() {
   return databases
-    .listDocuments(databaseID, usersID)
+    .listDocuments(database_id, users_collection_id)
     .then((response) => {
       return response.documents;
     })
@@ -49,7 +46,7 @@ function fetchUsers() {
 
 function fetchBookingById(documentId) {
   return databases
-    .getDocument(databaseID, bookingsID, documentId)
+    .getDocument(database_id, bookings_collection_id, documentId)
     .then((response) => {
       return response;
     });
@@ -57,7 +54,7 @@ function fetchBookingById(documentId) {
 
 function insertBooking(booking) {
   return databases
-    .createDocument(databaseID, bookingsID, booking.id, booking, [
+    .createDocument(database_id, bookings_collection_id, booking.id, booking, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -67,20 +64,20 @@ function insertBooking(booking) {
 }
 
 function removeUser(user_id) {
-  return databases.deleteDocument(databaseID, usersID, user_id);
+  return databases.deleteDocument(database_id, users_collection_id, user_id);
 }
 
 //////////
 function fetchUserById(user_id) {
   return databases
-    .getDocument(databaseID, usersID, user_id)
+    .getDocument(database_id, users_collection_id, user_id)
     .then((response) => {
       return response;
     });
 }
 function insertUser(user) {
   return databases
-    .createDocument(databaseID, usersID, user.id, user, [
+    .createDocument(database_id, users_collection_id, user.id, user, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -91,7 +88,7 @@ function insertUser(user) {
 }
 function patchUser(user_id, userUpdate) {
   return databases
-    .updateDocument(databaseID, usersID, user_id, userUpdate)
+    .updateDocument(database_id, users_collection_id, user_id, userUpdate)
     .then((response) => {
       return response;
     });
