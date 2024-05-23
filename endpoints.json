@@ -1,5 +1,202 @@
 {
   "GET /api": {
-    "description": "serves up a json representation of all the available endpoints of the api"
+      "description": "Serves up a JSON representation of all the available endpoints of the API."
+  },
+
+  "GET /api/users": { 
+      "description": "Serves up all users in the API.",
+      "queries": [],
+      "exampleResponse": {
+          "users": [
+              {
+                  "id": "USR123456789",
+                  "username": "johndoe",
+                  "email": "johndoe@example.com",
+                  "created_at": "2024-05-20T12:00:00.000Z",
+                  "updated_at": "2024-05-20T12:00:00.000Z",
+                  "flights": [],
+                  "accommodation": [],
+                  "bookings": [],
+                  "travelDetails": [],
+                  "itineraries": [],
+                  "activities": []
+              },
+              {
+                  "id": "USR234567890",
+                  "username": "janedoe",
+                  "email": "janedoe@example.com",
+                  "created_at": "2024-05-20T12:00:01.000Z",
+                  "updated_at": "2024-05-20T12:00:01.000Z",
+                  "flights": [],
+                  "accommodation": [],
+                  "bookings": [],
+                  "travelDetails": [],
+                  "itineraries": [],
+                  "activities": []
+              }
+          ]
+      }
+  },
+
+  "POST /api/users": {
+      "description": "Creates a new user.",
+      "requestBodyFormat": {
+          "username": "<string>",
+          "email": "<string>",
+          "password": "<string>"
+      },
+      "exampleResponse": {
+          "user": {
+              "id": "USR345678901",
+              "username": "alice",
+              "email": "alice@example.com",
+              "created_at": "2024-05-20T12:00:02.000Z",
+              "updated_at": "2024-05-20T12:00:02.000Z",
+              "flights": [],
+              "accommodation": [],
+              "bookings": [],
+              "travelDetails": [],
+              "itineraries": [],
+              "activities": []
+          }
+      }
+  },
+
+  "GET /api/users/:user_id": {
+      "description": "Serves up the user with the specified user ID.",
+      "queries": [],
+      "exampleResponse": {
+          "user": {
+              "id": "USR123456789",
+              "username": "johndoe",
+              "email": "johndoe@example.com",
+              "created_at": "2024-05-20T12:00:00.000Z",
+              "updated_at": "2024-05-20T12:00:00.000Z",
+              "flights": [],
+              "accommodation": [],
+              "bookings": [],
+              "travelDetails": [],
+              "itineraries": [],
+              "activities": []
+          }
+      }
+  },
+
+  "PATCH /api/users/:user_id": {
+      "description": "Updates the user with the specified user ID.",
+      "requestBodyFormat": {
+          "username": "<string> (optional)",
+          "email": "<string> (optional)"
+      },
+      "exampleResponse": {
+          "user": {
+              "id": "USR123456789",
+              "username": "john_updated",
+              "email": "john_updated@example.com",
+              "created_at": "2024-05-20T12:00:00.000Z",
+              "updated_at": "2024-05-21T12:00:00.000Z",
+              "flights": [],
+              "accommodation": [],
+              "bookings": [],
+              "travelDetails": [],
+              "itineraries": [],
+              "activities": []
+          }
+      }
+  },
+
+  "DELETE /api/users/:user_id": {
+      "description": "Deletes the user with the specified user ID."
+  },
+
+  "GET /api/bookings": {
+      "description": "Serves up all bookings in the API.",
+      "queries": [],
+      "exampleResponse": {
+          "bookings": [
+              {
+                  "id": "BK123456789",
+                  "itineraryId": "ITR123456789",
+                  "type": "hotel",
+                  "details": ["Booking details here..."],
+                  "createdAt": "2024-05-20T12:00:00.000Z",
+                  "updatedAt": "2024-05-20T12:00:00.000Z"
+              },
+              {
+                  "id": "BK234567890",
+                  "itineraryId": "ITR234567890",
+                  "type": "hotel",
+                  "details": ["Booking details here..."],
+                  "createdAt": "2024-05-20T12:00:01.000Z",
+                  "updatedAt": "2024-05-20T12:00:01.000Z"
+              }
+          ]
+      }
+  },
+
+  "GET /api/bookings/:booking_id": {
+      "description": "Serves up the booking with the specified booking ID.",
+      "queries": [],
+      "exampleResponse": {
+          "booking": {
+              "id": "BK123456789",
+              "itineraryId": "ITR123456789",
+              "type": "hotel",
+              "details": ["Booking details here..."],
+              "createdAt": "2024-05-20T12:00:00.000Z",
+              "updatedAt": "2024-05-20T12:00:00.000Z"
+          }
+      }
+  },
+
+  "POST /api/bookings": {
+      "description": "Creates a new booking.",
+      "requestBodyFormat": {
+          "itineraryId": "<string>",
+          "type": "<string>",
+          "details": "<array>"
+      },
+      "exampleResponse": {
+          "booking": {
+              "id": "BK345678901",
+              "itineraryId": "ITR345678901",
+              "type": "hotel",
+              "details": ["Booking details here..."],
+              "createdAt": "2024-05-20T12:00:02.000Z",
+              "updatedAt": "2024-05-20T12:00:02.000Z"
+          }
+      }
+  },
+
+  "GET /api/flights": {
+      "description": "Serves up all flights in the API.",
+      "queries": [],
+      "exampleResponse": {
+          "flights": [
+              {
+                  "id": "AF987654321",
+                  "airline": "Air France",
+                  "departureAirport": "JFK",
+                  "arrivalAirport": "CDG",
+                  "departureTime": "2024-06-20T08:30:00Z",
+                  "arrivalTime": "2024-06-20T12:30:00Z",
+                  "ticketNumber": "AF987654321",
+                  "seatNumber": "15F"
+              },
+              {
+                  "id": "AF246813579",
+                  "airline": "Air France",
+                  "departureAirport": "JFK",
+                  "arrivalAirport": "CDG",
+                  "departureTime": "2024-07-05T12:45:00Z",
+                  "arrivalTime": "2024-07-05T16:45:00Z",
+                  "ticketNumber": "AF246813579",
+                  "seatNumber": "7C"
+              }
+          ]
+      }
   }
+
+
 }
+

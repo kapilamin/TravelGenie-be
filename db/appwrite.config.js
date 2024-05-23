@@ -13,6 +13,8 @@ const {
 
 const dotenv = require("dotenv");
 
+console.log(process.env.NODE_ENV, "<<<<<--------");
+
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: ".env.production" });
 } else {
