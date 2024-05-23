@@ -1,15 +1,14 @@
-const { databases, Permission, Role } = require('./appwrite');
-const { 
-  activitiesID, 
-  itinerariesID, 
+const { databases, Permission, Role } = require("./testDb/appwrite.config");
+const {
+  activitiesID,
+  itinerariesID,
   travelDetailsID,
   accommodationID,
   bookingsID,
   flightsID,
   usersID,
-  databaseID
-} = require('../collectionIDs.json')
-
+  databaseID,
+} = require("../db/testDb/testCollectionIDs.json");
 
 const Users = require("../db/data/testData/Users.json");
 const Accommodation = require("../db/data/testData/Accommodations.json");
@@ -19,7 +18,6 @@ const Flights = require("../db/data/testData/Flights.json");
 const TravelDetails = require("../db/data/testData/TravelDetails.json");
 const Itineraries = require("../db/data/testData/Itineraries.json");
 
-
 const databaseId = databaseID;
 const usersCollectionId = usersID;
 const flightsCollectionId = flightsID;
@@ -28,7 +26,6 @@ const activitiesCollectionId = activitiesID;
 const bookingsCollectionId = bookingsID;
 const itinerariesCollectionId = itinerariesID;
 const travelDetailsCollectionId = travelDetailsID;
-
 
 async function seedCollection(collectionId, data) {
   const promises = data.map((item) =>

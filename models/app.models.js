@@ -1,4 +1,9 @@
-const { databases, users, Permission, Role } = require("../db/appwrite");
+const {
+  databases,
+  users,
+  Permission,
+  Role,
+} = require("../db/testDb/appwrite.config");
 const {
   activitiesID,
   bookingsID,
@@ -8,10 +13,7 @@ const {
   flightsID,
   usersID,
   databaseID,
-} = require("../collectionIDs.json");
-
-
-
+} = require("../db/testDb/testCollectionIDs.json");
 
 // LISTING DOCUMENTS
 function fetchFlights() {
@@ -89,12 +91,7 @@ function insertUser(user) {
 }
 function patchUser(user_id, userUpdate) {
   return databases
-    .updateDocument(
-      databaseID,
-      usersID,
-      user_id,
-      userUpdate
-    )
+    .updateDocument(databaseID, usersID, user_id, userUpdate)
     .then((response) => {
       return response;
     });
