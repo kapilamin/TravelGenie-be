@@ -1,4 +1,15 @@
-const { databases, Permission, Role } = require("./appwrite");
+const { databases, Permission, Role } = require('./appwrite');
+const { 
+  activitiesID, 
+  itinerariesID, 
+  travelDetailsID,
+  accommodationID,
+  bookingsID,
+  flightsID,
+  usersID,
+  databaseID
+} = require('../collectionIDs.json')
+
 
 const Users = require("../db/data/testData/Users.json");
 const Accommodation = require("../db/data/testData/Accommodations.json");
@@ -8,15 +19,16 @@ const Flights = require("../db/data/testData/Flights.json");
 const TravelDetails = require("../db/data/testData/TravelDetails.json");
 const Itineraries = require("../db/data/testData/Itineraries.json");
 
-// Collection IDs
-const databaseId = "664b0461000136d40330";
-const usersCollectionId = "664b04a2000e37a4e0f7";
-const flightsCollectionId = "664b116d00364096c872";
-const accommodationsCollectionId = "664b1243003a386b030d";
-const activitiesCollectionId = "664b18aa00295019a2b1";
-const bookingsCollectionId = "664b11a7003b76702fe8";
-const itinerariesCollectionId = "664b1648002e754824ee";
-const travelDetailsCollectionId = "664b136000290893618f";
+
+const databaseId = databaseID;
+const usersCollectionId = usersID;
+const flightsCollectionId = flightsID;
+const accommodationsCollectionId = accommodationID;
+const activitiesCollectionId = activitiesID;
+const bookingsCollectionId = bookingsID;
+const itinerariesCollectionId = itinerariesID;
+const travelDetailsCollectionId = travelDetailsID;
+
 
 async function seedCollection(collectionId, data) {
   const promises = data.map((item) =>

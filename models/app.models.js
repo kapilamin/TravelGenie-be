@@ -7,16 +7,16 @@ const {
   accommodationID,
   flightsID,
   usersID,
-  databaseId,
+  databaseID,
 } = require("../collectionIDs.json");
-const { log } = require("console");
+
+
+
 
 // LISTING DOCUMENTS
 function fetchFlights() {
-  const collectionId = "664b116d00364096c872";
-  const databaseId = "664b0461000136d40330";
   return databases
-    .listDocuments(databaseId, collectionId)
+    .listDocuments(databaseID, flightsID)
     .then((response) => {
       return response;
     })
@@ -25,9 +25,8 @@ function fetchFlights() {
     });
 }
 function fetchBookings() {
-  const databaseId = "664b0461000136d40330";
   return databases
-    .listDocuments(databaseId, bookingsID)
+    .listDocuments(databaseID, bookingsID)
     .then((response) => {
       return response.documents;
     })
@@ -36,9 +35,8 @@ function fetchBookings() {
     });
 }
 function fetchUsers() {
-  const databaseId = "664b0461000136d40330";
   return databases
-    .listDocuments(databaseId, usersID)
+    .listDocuments(databaseID, usersID)
     .then((response) => {
       return response.documents;
     })
@@ -49,7 +47,7 @@ function fetchUsers() {
 
 function fetchBookingById(documentId) {
   return databases
-    .getDocument(databaseId, bookingsID, documentId)
+    .getDocument(databaseID, bookingsID, documentId)
     .then((response) => {
       return response;
     });
@@ -57,7 +55,7 @@ function fetchBookingById(documentId) {
 
 function insertBooking(booking) {
   return databases
-    .createDocument(databaseId, bookingsID, booking.id, booking, [
+    .createDocument(databaseID, bookingsID, booking.id, booking, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -67,20 +65,20 @@ function insertBooking(booking) {
 }
 
 function removeUser(user_id) {
-  return databases.deleteDocument(databaseId, usersID, user_id);
+  return databases.deleteDocument(databaseID, usersID, user_id);
 }
 
 //////////
 function fetchUserById(user_id) {
   return databases
-    .getDocument(databaseId, usersID, user_id)
+    .getDocument(databaseID, usersID, user_id)
     .then((response) => {
       return response;
     });
 }
 function insertUser(user) {
   return databases
-    .createDocument(databaseId, usersID, user.id, user, [
+    .createDocument(databaseID, usersID, user.id, user, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -92,14 +90,10 @@ function insertUser(user) {
 function patchUser(user_id, userUpdate) {
   return databases
     .updateDocument(
-      databaseId,
+      databaseID,
       usersID,
       user_id,
       userUpdate
-      //   [
-      //   Permission.read(Role.any()),
-      //   Permission.write(Role.any()),
-      // ]
     )
     .then((response) => {
       return response;

@@ -204,7 +204,7 @@ describe("POST:/api/users/", () => {
         expect(body.msg).toBe("document_invalid_structure");
       });
   });
-  test.only("POST:400 responds with an appropriate status and error message when provided with a valid attribute with missing entry required field (email)", () => {
+  test("POST:400 responds with an appropriate status and error message when provided with a valid attribute with missing entry required field (email)", () => {
     const newUser = {
       id: "USR0987654321",
       username: "johnsmith",
@@ -218,22 +218,22 @@ describe("POST:/api/users/", () => {
       .send(newUser)
       .expect(400)
       .then(({ body }) => {
-        console.log(body);
         expect(body.msg).toBe("document_invalid_structure");
       });
   });
 
   test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
-    const newBooking = {
+    const newUser = {
       id: 987654321,
-      itineraryId: "itinerary456",
-      details: ["Booking details here..."],
-      createdAt: "2024-05-22T08:30:00.000Z",
-      updatedAt: "2024-05-22T08:30:00.000Z",
+      username: "johnsmith",
+      email: "johnsmith@example.com",
+      password: "hashed_password2",
+      created_at: "2024-05-21T14:30:15.000Z",
+      updated_at: "2024-05-21T14:30:15.000Z",
     };
     return request(app)
       .post("/api/users")
-      .send(newBooking)
+      .send(newUser)
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Invalid data type provided");

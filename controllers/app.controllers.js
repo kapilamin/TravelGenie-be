@@ -95,7 +95,6 @@ function updateUserById(req, res, next) {
 
   patchUser(user_id, userUpdate)
     .then((user) => {
-      console.log(user);
       res.status(202).send(user);
     })
     .catch((error) => {
