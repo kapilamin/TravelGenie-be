@@ -1,4 +1,5 @@
 const {
+  ID,
   databases,
   Permission,
   Role,
@@ -10,7 +11,7 @@ const {
   bookings_collection_id,
   flights_collection_id,
   users_collection_id,
-  travel_documents_collection_id
+  travel_documents_collection_id,
 } = require("./appwrite.config");
 
 const Users = require("../db/data/testData/Users.json");
@@ -20,12 +21,26 @@ const Bookings = require("../db/data/testData/Bookings.json");
 const Flights = require("../db/data/testData/Flights.json");
 const TravelDetails = require("../db/data/testData/TravelDetails.json");
 const Itineraries = require("../db/data/testData/Itineraries.json");
-const TravelDocuments = require('../db/data/testData/TravelDocuments.json')
+const TravelDocuments = require("../db/data/testData/TravelDocuments.json");
 
 async function seedCollection(collectionId, data) {
+  // await databases.createDocument(
+  //   database_id,
+  //   collectionId,
+  //   "0987654321fedcba",
+  //   {
+  //     documentId: "1122334455667788",
+  //     bucketId: "aabbccddeeff0011",
+  //     updatedAt: "2024-05-24T14:50:15.456+00:00",
+  //     createdAt: "2024-05-24T10:15:00.000+00:00",
+  //     type: "text/plain",
+  //     name: "example-text-1.txt",
+  //   },
+  //   [Permission.read(Role.any()), Permission.write(Role.any())]
+  // );
   const promises = data.map((item) =>
     databases
-      .createDocument(database_id, collectionId, item.id, item, [
+      .createDocument(database_id, collectionId, ID.unique(), item, [
         Permission.read(Role.any()),
         Permission.write(Role.any()),
       ])
@@ -45,9 +60,12 @@ async function seedCollection(collectionId, data) {
 async function clearCollection(collectionId) {
   try {
     const response = await databases.listDocuments(database_id, collectionId);
-    const deletePromises = response.documents.map((document) =>
-      databases.deleteDocument(database_id, collectionId, document.id)
-    );
+    const deletePromises = response.documents.map((document) => {
+      // if (document.$id === "0987654321fedcba") {
+      //   return;
+      // }
+      return databases.deleteDocument(database_id, collectionId, document.$id);
+    });
     await Promise.all(deletePromises);
   } catch (error) {
     if (error.type === "document_not_found") {

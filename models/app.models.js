@@ -1,4 +1,10 @@
-const { databases, users, Permission, Role } = require("../db/appwrite.config");
+const {
+  databases,
+  users,
+  Permission,
+  Role,
+  ID,
+} = require("../db/appwrite.config");
 const {
   database_id,
   activities_collection_id,
@@ -8,9 +14,8 @@ const {
   bookings_collection_id,
   flights_collection_id,
   users_collection_id,
-  travel_documents_collection_id
+  travel_documents_collection_id,
 } = require("../db/appwrite.config");
-
 
 // LISTING DOCUMENTS
 function fetchFlights() {
@@ -54,7 +59,7 @@ function fetchBookingById(documentId) {
 
 function insertBooking(booking) {
   return databases
-    .createDocument(database_id, bookings_collection_id, booking.id, booking, [
+    .createDocument(database_id, bookings_collection_id, ID.unique(), booking, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -77,7 +82,7 @@ function fetchUserById(user_id) {
 }
 function insertUser(user) {
   return databases
-    .createDocument(database_id, users_collection_id, user.id, user, [
+    .createDocument(database_id, users_collection_id, ID.unique(), user, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
@@ -105,15 +110,22 @@ function fetchTravelDocumentsById(documentId) {
 }
 
 function removeTravelDocument(document_id) {
-  return databases.deleteDocument(database_id, travel_documents_collection_id, document_id);
+  return databases.deleteDocument(
+    database_id,
+    travel_documents_collection_id,
+    document_id
+  );
 }
 
 function insertTravelDocument(document) {
   return databases
-    .createDocument(database_id, travel_documents_collection_id, document.id, document, [
-      Permission.read(Role.any()),
-      Permission.write(Role.any()),
-    ])
+    .createDocument(
+      database_id,
+      travel_documents_collection_id,
+      ID.unique(),
+      document,
+      [Permission.read(Role.any()), Permission.write(Role.any())]
+    )
     .then((response) => {
       return response;
     });
@@ -131,5 +143,5 @@ module.exports = {
   patchUser,
   fetchTravelDocumentsById,
   removeTravelDocument,
-  insertTravelDocument
+  insertTravelDocument,
 };

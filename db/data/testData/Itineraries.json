@@ -1,6 +1,5 @@
 [
   {
-    "id": "ITR123456789",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",
@@ -9,7 +8,6 @@
     "accommodation": ["accommodation123"]
   },
   {
-    "id": "ITR234567890",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",
@@ -18,7 +16,6 @@
     "accommodation": ["accommodation456"]
   },
   {
-    "id": "ITR345678901",
     "tripName": "Summer Vacation 2024",
     "startDate": "2024-06-15",
     "endDate": "2024-06-25",

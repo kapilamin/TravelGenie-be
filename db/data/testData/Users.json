@@ -1,6 +1,5 @@
 [
   {
-    "id": "USR123456789",
     "username": "johndoe",
     "email": "johndoe@example.com",
     "password": "hashed_password",
@@ -14,7 +13,6 @@
     "activities": []
   },
   {
-    "id": "USR234567890",
     "username": "janedoe",
     "email": "janedoe@example.com",
     "password": "hashed_password",
@@ -28,7 +26,6 @@
     "activities": []
   },
   {
-    "id": "USR345678901",
     "username": "alice",
     "email": "alice@example.com",
     "password": "hashed_password",

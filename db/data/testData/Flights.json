@@ -1,6 +1,5 @@
 [
   {
-    "id": "AF987654321",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",
@@ -10,7 +9,6 @@
     "seatNumber": "15F"
   },
   {
-    "id": "AF246813579",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",
@@ -20,7 +18,6 @@
     "seatNumber": "7C"
   },
   {
-    "id": "AF112233445",
     "airline": "Air France",
     "departureAirport": "JFK",
     "arrivalAirport": "CDG",

@@ -1,6 +1,5 @@
 [
   {
-    "id": "AC987654321",
     "name": "Hotel Parisian",
     "location": "123 Champs-Élysées, Paris",
     "checkInDate": "2024-06-15",
@@ -11,7 +10,6 @@
     "amenities": ["Free Wi-Fi", "Breakfast included", "Swimming pool"]
   },
   {
-    "id": "BC123456789",
     "name": "Grand Budapest Hotel",
     "location": "84-86 Grand Avenue, Budapest",
     "checkInDate": "2024-07-05",
@@ -22,7 +20,6 @@
     "amenities": ["Free Wi-Fi", "Breakfast included", "Spa", "Gym"]
   },
   {
-    "id": "DE987654321",
     "name": "Hilton Tokyo",
     "location": "6-2 Nishi-Shinjuku, Tokyo",
     "checkInDate": "2024-08-01",

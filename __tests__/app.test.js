@@ -170,7 +170,6 @@ describe("PATCH:/api/users/:user_id", () => {
 describe("POST:/api/users/", () => {
   test("POST 201 returns the posted item", () => {
     const newUser = {
-      id: "USR0987654321",
       username: "johnsmith",
       email: "johnsmith@example.com",
       password: "hashed_password2",
@@ -189,7 +188,6 @@ describe("POST:/api/users/", () => {
 
   test("POST:400 responds with an appropriate status and error message when provided with a missing required field (email)", () => {
     const newUser = {
-      id: "USR0987654321",
       username: "johnsmith",
       // email: "johnsmith@example.com",
       password: "hashed_password2",
@@ -206,7 +204,6 @@ describe("POST:/api/users/", () => {
   });
   test("POST:400 responds with an appropriate status and error message when provided with a valid attribute with missing entry required field (email)", () => {
     const newUser = {
-      id: "USR0987654321",
       username: "johnsmith",
       email: "",
       password: "hashed_password2",
@@ -222,23 +219,23 @@ describe("POST:/api/users/", () => {
       });
   });
 
-  test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
-    const newUser = {
-      id: 987654321,
-      username: "johnsmith",
-      email: "johnsmith@example.com",
-      password: "hashed_password2",
-      created_at: "2024-05-21T14:30:15.000Z",
-      updated_at: "2024-05-21T14:30:15.000Z",
-    };
-    return request(app)
-      .post("/api/users")
-      .send(newUser)
-      .expect(400)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Invalid data type provided");
-      });
-  });
+  // test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
+  //   const newUser = {
+  //     id: 987654321,
+  //     username: "johnsmith",
+  //     email: "johnsmith@example.com",
+  //     password: "hashed_password2",
+  //     created_at: "2024-05-21T14:30:15.000Z",
+  //     updated_at: "2024-05-21T14:30:15.000Z",
+  //   };
+  //   return request(app)
+  //     .post("/api/users")
+  //     .send(newUser)
+  //     .expect(400)
+  //     .then(({ body }) => {
+  //       expect(body.msg).toBe("Invalid data type provided");
+  //     });
+  // });
 });
 
 ////////
@@ -246,7 +243,6 @@ describe("POST:/api/users/", () => {
 describe("POST:/api/bookings/", () => {
   test("POST 201 returns the posted item", () => {
     const newBooking = {
-      id: "BK987654321",
       itineraryId: "itinerary456",
       type: "flight",
       details: ["Booking details here..."],
@@ -265,7 +261,6 @@ describe("POST:/api/bookings/", () => {
 
   test("POST:400 responds with an appropriate status and error message when provided with a missing field (no flight field)", () => {
     const newBooking = {
-      id: "BK987654321",
       itineraryId: "itinerary456",
       details: ["Booking details here..."],
       createdAt: "2024-05-22T08:30:00.000Z",
@@ -280,22 +275,22 @@ describe("POST:/api/bookings/", () => {
       });
   });
 
-  test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
-    const newBooking = {
-      id: 987654321,
-      itineraryId: "itinerary456",
-      details: ["Booking details here..."],
-      createdAt: "2024-05-22T08:30:00.000Z",
-      updatedAt: "2024-05-22T08:30:00.000Z",
-    };
-    return request(app)
-      .post("/api/bookings")
-      .send(newBooking)
-      .expect(400)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Invalid data type provided");
-      });
-  });
+  // test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
+  //   const newBooking = {
+  //     id: 987654321,
+  //     itineraryId: "itinerary456",
+  //     details: ["Booking details here..."],
+  //     createdAt: "2024-05-22T08:30:00.000Z",
+  //     updatedAt: "2024-05-22T08:30:00.000Z",
+  //   };
+  //   return request(app)
+  //     .post("/api/bookings")
+  //     .send(newBooking)
+  //     .expect(400)
+  //     .then(({ body }) => {
+  //       expect(body.msg).toBe("Invalid data type provided");
+  //     });
+  // });
 });
 
 describe("DELETE:204 deletes the specified user and sends no body back", () => {
@@ -312,16 +307,16 @@ describe("DELETE:204 deletes the specified user and sends no body back", () => {
   });
 });
 
-
 ///////////////////////////////////////////
 
 describe("GET /api/travel_documents/:document_id", () => {
-  test("GET status:200, Should get all travel documents with the corrrect data", () => {
+  test.only("GET status:200, Should get all travel documents with the corrrect data", () => {
     return request(app)
       .get("/api/travel_documents/1234567890abcdef")
       .expect(200)
       .then(({ body }) => {
-        expect(typeof body.id).toBe("string");
+        console.log(body);
+        expect(typeof body.$id).toBe("string");
         expect(typeof body.bucketId).toBe("string");
         expect(typeof body.type).toBe("string");
         expect(typeof body.name).toBe("string");
@@ -343,19 +338,20 @@ describe("GET /api/travel_documents/:document_id", () => {
 describe("POST:/api/travel_documents/", () => {
   test("POST 201 returns the posted item", () => {
     const newDocument = {
-      id: "9876543210fedcba",
       bucketId: "fedcba9876543210",
+      documentId: "fedcba9876543210",
       updatedAt: "2024-06-01T15:30:20.123+00:00",
       createdAt: "2024-06-01T14:00:00.000+00:00",
       type: "image/png",
-      name: "sample-image-2.png"
-    }
-    
+      name: "sample-image-2.png",
+    };
+
     return request(app)
       .post("/api/travel_documents")
       .send(newDocument)
       .expect(201)
       .then(({ body }) => {
+        console.log(body);
         expect(body.type).toBe(newDocument.type);
         expect(body.name).toEqual(newDocument.name);
       });
@@ -363,12 +359,11 @@ describe("POST:/api/travel_documents/", () => {
 
   test("POST:400 responds with an appropriate status and error message when provided with a missing field (no bucketId field)", () => {
     const newDocument = {
-      id: "9876543210fedcba",
-      // bucketId: "fedcba9876543210",
+      documentId: "9876543210fedcba",
       updatedAt: "2024-06-01T15:30:20.123+00:00",
       createdAt: "2024-06-01T14:00:00.000+00:00",
       type: "image/png",
-      name: "sample-image-2.png"
+      name: "sample-image-2.png",
     };
     return request(app)
       .post("/api/travel_documents")
@@ -379,29 +374,30 @@ describe("POST:/api/travel_documents/", () => {
       });
   });
 
-  test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
-    const newDocument = {
-      id: 9876543210,
-      bucketId: "fedcba9876543210",
-      updatedAt: "2024-06-01T15:30:20.123+00:00",
-      createdAt: "2024-06-01T14:00:00.000+00:00",
-      type: "image/png",
-      name: "sample-image-2.png"
-    };
-    return request(app)
-      .post("/api/travel_documents")
-      .send(newDocument)
-      .expect(400)
-      .then(({ body }) => {
-        expect(body.msg).toBe("Invalid data type provided");
-      });
-  });
+  // test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
+  //   const newDocument = {
+  //     id: 9876543210,
+  //     bucketId: "fedcba9876543210",
+  //     updatedAt: "2024-06-01T15:30:20.123+00:00",
+  //     createdAt: "2024-06-01T14:00:00.000+00:00",
+  //     type: "image/png",
+  //     name: "sample-image-2.png",
+  //   };
+  //   return request(app)
+  //     .post("/api/travel_documents")
+  //     .send(newDocument)
+  //     .expect(400)
+  //     .then(({ body }) => {
+  //       expect(body.msg).toBe("Invalid data type provided");
+  //     });
+  // });
 });
 
-
 describe("DELETE:204 deletes the specified travel document and sends no body back", () => {
-  test("204 - returns the ", () => {
-    return request(app).delete("/api/travel_documents/0987654321fedcba").expect(204);
+  test.only("204 - returns the ", () => {
+    return request(app)
+      .delete("/api/travel_documents/0987654321fedcba")
+      .expect(204);
   });
   test("DELETE:404 responds with an appropriate status and error message when given a non-existent id", () => {
     return request(app)

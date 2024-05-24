@@ -1,6 +1,5 @@
 [
   {
-    "id": "ACT123456786",
     "location": "Paris",
     "name": "Seine River Cruise",
     "type": "Tour",
@@ -10,7 +9,6 @@
     "endTime": "20:00"
   },
   {
-    "id": "ACT654321987",
     "location": "New York",
     "name": "Central Park Bike Ride",
     "type": "Outdoor Activity",
@@ -20,7 +18,6 @@
     "endTime": "16:00"
   },
   {
-    "id": "ACT123456789",
     "location": "London",
     "name": "Thames River Evening Cruise",
     "type": "Tour",
