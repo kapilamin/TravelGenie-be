@@ -8,9 +8,9 @@ const {
   bookings_collection_id,
   flights_collection_id,
   users_collection_id,
+  travel_documents_collection_id
 } = require("../db/appwrite.config");
 
-// console.log(database_id, activities_collection_id, "<<<<<<<<<<<");
 
 // LISTING DOCUMENTS
 function fetchFlights() {
@@ -94,6 +94,31 @@ function patchUser(user_id, userUpdate) {
     });
 }
 
+///////////////////////////////////////////////
+
+function fetchTravelDocumentsById(documentId) {
+  return databases
+    .getDocument(database_id, travel_documents_collection_id, documentId)
+    .then((response) => {
+      return response;
+    });
+}
+
+function removeTravelDocument(document_id) {
+  return databases.deleteDocument(database_id, travel_documents_collection_id, document_id);
+}
+
+function insertTravelDocument(document) {
+  return databases
+    .createDocument(database_id, travel_documents_collection_id, document.id, document, [
+      Permission.read(Role.any()),
+      Permission.write(Role.any()),
+    ])
+    .then((response) => {
+      return response;
+    });
+}
+
 module.exports = {
   fetchFlights,
   fetchBookings,
@@ -104,4 +129,7 @@ module.exports = {
   fetchUserById,
   insertUser,
   patchUser,
+  fetchTravelDocumentsById,
+  removeTravelDocument,
+  insertTravelDocument
 };

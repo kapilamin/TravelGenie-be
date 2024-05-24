@@ -195,8 +195,35 @@
               }
           ]
       }
-  }
+  },
 
+  "GET /api/travel_documents/:document_id": {
+    "description": "Serves up the travel document with the specified document ID."
+    },
+    "POST /api/travel_documents": {
+        "description": "Creates a new travel document.",
+        "requestBodyFormat": {
+            "id": "<string>",
+            "bucketId": "<string>",
+            "updatedAt": "<datetime>",
+            "createdAt": "<datetime>",
+            "type": "<string>",
+            "name": "<string>"
+        },
+        "exampleResponse": {
+            "travelDocument": {
+                "id": "TRV123456789",
+                "bucketId": "bucket123456",
+                "updatedAt": "2024-06-01T15:30:20.123+00:00",
+                "createdAt": "2024-06-01T14:00:00.000+00:00",
+                "type": "application/pdf",
+                "name": "travel-doc-1.pdf"
+            }
+        }
+    },
+    "DELETE /api/travel_documents/:document_id": {
+        "description": "Deletes the travel document with the specified document ID."
+    }
 
 }
 

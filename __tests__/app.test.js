@@ -311,3 +311,104 @@ describe("DELETE:204 deletes the specified user and sends no body back", () => {
       });
   });
 });
+
+
+///////////////////////////////////////////
+
+describe("GET /api/travel_documents/:document_id", () => {
+  test("GET status:200, Should get all travel documents with the corrrect data", () => {
+    return request(app)
+      .get("/api/travel_documents/1234567890abcdef")
+      .expect(200)
+      .then(({ body }) => {
+        expect(typeof body.id).toBe("string");
+        expect(typeof body.bucketId).toBe("string");
+        expect(typeof body.type).toBe("string");
+        expect(typeof body.name).toBe("string");
+        expect(typeof body.createdAt).toBe("string");
+        expect(typeof body.updatedAt).toBe("string");
+      });
+  });
+
+  test("GET:404 sends an appropriate status and error message when given a valid but non-existent document_id", () => {
+    return request(app)
+      .get("/api/travel_documents/999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_not_found");
+      });
+  });
+});
+
+describe("POST:/api/travel_documents/", () => {
+  test("POST 201 returns the posted item", () => {
+    const newDocument = {
+      id: "9876543210fedcba",
+      bucketId: "fedcba9876543210",
+      updatedAt: "2024-06-01T15:30:20.123+00:00",
+      createdAt: "2024-06-01T14:00:00.000+00:00",
+      type: "image/png",
+      name: "sample-image-2.png"
+    }
+    
+    return request(app)
+      .post("/api/travel_documents")
+      .send(newDocument)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body.type).toBe(newDocument.type);
+        expect(body.name).toEqual(newDocument.name);
+      });
+  });
+
+  test("POST:400 responds with an appropriate status and error message when provided with a missing field (no bucketId field)", () => {
+    const newDocument = {
+      id: "9876543210fedcba",
+      // bucketId: "fedcba9876543210",
+      updatedAt: "2024-06-01T15:30:20.123+00:00",
+      createdAt: "2024-06-01T14:00:00.000+00:00",
+      type: "image/png",
+      name: "sample-image-2.png"
+    };
+    return request(app)
+      .post("/api/travel_documents")
+      .send(newDocument)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_invalid_structure");
+      });
+  });
+
+  test("POST:400 responds with an appropriate status and error message when provided with an invalid id is provided", () => {
+    const newDocument = {
+      id: 9876543210,
+      bucketId: "fedcba9876543210",
+      updatedAt: "2024-06-01T15:30:20.123+00:00",
+      createdAt: "2024-06-01T14:00:00.000+00:00",
+      type: "image/png",
+      name: "sample-image-2.png"
+    };
+    return request(app)
+      .post("/api/travel_documents")
+      .send(newDocument)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid data type provided");
+      });
+  });
+});
+
+
+describe("DELETE:204 deletes the specified travel document and sends no body back", () => {
+  test("204 - returns the ", () => {
+    return request(app).delete("/api/travel_documents/0987654321fedcba").expect(204);
+  });
+  test("DELETE:404 responds with an appropriate status and error message when given a non-existent id", () => {
+    return request(app)
+      .delete("/api/travel_documents/999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("document_not_found");
+      });
+  });
+});

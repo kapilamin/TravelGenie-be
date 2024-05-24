@@ -8,6 +8,9 @@ const {
   fetchUserById,
   insertUser,
   patchUser,
+  fetchTravelDocumentsById,
+  removeTravelDocument,
+  insertTravelDocument
 } = require("../models/app.models");
 const endpoints = require("../endpoints.json");
 
@@ -66,6 +69,7 @@ function postBooking(req, res, next) {
       next(error);
     });
 }
+
 function deleteUser(req, res, next) {
   const { user_id } = req.params;
 
@@ -113,6 +117,43 @@ function postUser(req, res, next) {
       next(error);
     });
 }
+
+function getTravelDocumentsById(req, res, next) {
+  const { document_id } = req.params;
+
+  fetchTravelDocumentsById(document_id)
+    .then((document) => {
+      res.status(200).send(document);
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+
+function postTravelDocument(req, res, next) {
+  const document = req.body;
+
+  insertTravelDocument(document)
+    .then((document) => {
+      res.status(201).send(document);
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+
+function deleteTravelDocumentsById(req, res, next) {
+  const { document_id } = req.params;
+
+  removeTravelDocument(document_id)
+    .then((document) => {
+      res.status(204).send();
+    })
+    .catch((error) => {
+      next(error);
+    });
+}
+
 module.exports = {
   getFlights,
   getAllEndpoints,
@@ -124,4 +165,7 @@ module.exports = {
   postUser,
   getUserById,
   updateUserById,
+  getTravelDocumentsById,
+  postTravelDocument,
+  deleteTravelDocumentsById
 };

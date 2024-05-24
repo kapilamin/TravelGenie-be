@@ -13,8 +13,6 @@ const {
 
 const dotenv = require("dotenv");
 
-console.log(process.env.NODE_ENV, "<<<<<--------");
-
 if (process.env.NODE_ENV === "production") {
   dotenv.config({ path: ".env.production" });
 } else {
@@ -34,6 +32,7 @@ const accommodations_collection_id = process.env.ACCOMMODATIONS_COLLECTION_ID;
 const bookings_collection_id = process.env.BOOKINGS_COLLECTION_ID;
 const flights_collection_id = process.env.FLIGHTS_COLLECTION_ID;
 const users_collection_id = process.env.USERS_COLLECTION_ID;
+const travel_documents_collection_id = process.env.TRAVEL_DOCUMENTS_COLLECTION_ID;
 
 client.setEndpoint(endpoint).setProject(projectId).setKey(apiKey);
 
@@ -59,4 +58,5 @@ module.exports = {
   bookings_collection_id,
   flights_collection_id,
   users_collection_id,
+  travel_documents_collection_id
 };

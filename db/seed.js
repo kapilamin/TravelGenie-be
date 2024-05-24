@@ -10,6 +10,7 @@ const {
   bookings_collection_id,
   flights_collection_id,
   users_collection_id,
+  travel_documents_collection_id
 } = require("./appwrite.config");
 
 const Users = require("../db/data/testData/Users.json");
@@ -19,6 +20,7 @@ const Bookings = require("../db/data/testData/Bookings.json");
 const Flights = require("../db/data/testData/Flights.json");
 const TravelDetails = require("../db/data/testData/TravelDetails.json");
 const Itineraries = require("../db/data/testData/Itineraries.json");
+const TravelDocuments = require('../db/data/testData/TravelDocuments.json')
 
 async function seedCollection(collectionId, data) {
   const promises = data.map((item) =>
@@ -64,6 +66,7 @@ async function seedAllCollections() {
     seedCollection(itineraries_collection_id, Itineraries),
     seedCollection(activities_collection_id, Activities),
     seedCollection(travel_details_collection_id, TravelDetails),
+    seedCollection(travel_documents_collection_id, TravelDocuments),
   ];
   await Promise.all(seedPromises);
 }
@@ -77,6 +80,7 @@ async function clearAllCollections() {
     clearCollection(itineraries_collection_id),
     clearCollection(activities_collection_id),
     clearCollection(travel_details_collection_id),
+    clearCollection(travel_documents_collection_id),
   ];
   await Promise.all(clearPromises);
 }

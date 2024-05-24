@@ -11,6 +11,9 @@ const {
   postUser,
   getUserById,
   updateUserById,
+  getTravelDocumentsById,
+  postTravelDocument,
+  deleteTravelDocumentsById
 } = require("./controllers/app.controllers");
 
 const app = express();
@@ -31,7 +34,11 @@ app.get("/api/bookings/:booking_id", getBookingbyId);
 app.post("/api/bookings", postBooking);
 
 app.get("/api/flights", getFlights);
-// app.get("/api/flights", getTravelDocuments);
+
+// travel documents
+app.get("/api/travel_documents/:document_id", getTravelDocumentsById);
+app.post("/api/travel_documents", postTravelDocument);
+app.delete("/api/travel_documents/:document_id", deleteTravelDocumentsById);
 
 // errorHandling
 app.use((err, req, res, next) => {
