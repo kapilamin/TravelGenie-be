@@ -33,7 +33,7 @@ describe("GET /api/bookings", () => {
       .then(({ body }) => {
         expect(body.length).toBe(3);
         body.forEach((booking) => {
-          expect(typeof booking.id).toBe("string");
+          expect(typeof booking.$id).toBe("string");
           expect(typeof booking.itineraryId).toBe("string");
           expect(typeof booking.type).toBe("string");
           expect(Array.isArray(booking.details)).toBe(true);
@@ -47,10 +47,10 @@ describe("GET /api/bookings", () => {
 describe("GET /api/bookings/:booking_id", () => {
   test("GET status:200, Should get all bookings with the corrrect data", () => {
     return request(app)
-      .get("/api/bookings/BK123456789")
+      .get("/api/bookings/664b11a7003b76702fe80")
       .expect(200)
       .then(({ body }) => {
-        expect(typeof body.id).toBe("string");
+        expect(typeof body.$id).toBe("string");
         expect(typeof body.itineraryId).toBe("string");
         expect(typeof body.type).toBe("string");
         expect(Array.isArray(body.details)).toBe(true);
@@ -79,7 +79,7 @@ describe("GET /api/users", () => {
         expect(Array.isArray(body)).toBe(true);
 
         body.forEach((user) => {
-          expect(typeof user.id).toBe("string");
+          expect(typeof user.$id).toBe("string");
           expect(typeof user.username).toBe("string");
           expect(typeof user.email).toBe("string");
           expect(Array.isArray(user.flights)).toBe(true);
@@ -93,10 +93,10 @@ describe("GET /api/users", () => {
 describe("GET /api/users/:user_id", () => {
   test("GET status:200, Should get user with the corrrect data", () => {
     return request(app)
-      .get("/api/users/USR234567890")
+      .get("/api/users/664b04a2000e37a4e0f71")
       .expect(200)
       .then(({ body }) => {
-        expect(typeof body.id).toBe("string");
+        expect(typeof body.$id).toBe("string");
         expect(typeof body.username).toBe("string");
         expect(typeof body.email).toBe("string");
         expect(Array.isArray(body.flights)).toBe(true);
@@ -124,7 +124,7 @@ describe("PATCH:/api/users/:user_id", () => {
       updated_at: "2024-05-20T12:00:00.000Z",
     };
     return request(app)
-      .patch("/api/users/USR234567890")
+      .patch("/api/users/664b04a2000e37a4e0f72")
       .send(userUpdate)
       .expect(202)
       .then(({ body }) => {
@@ -142,7 +142,7 @@ describe("PATCH:/api/users/:user_id", () => {
       address: "CM7777777777777",
     };
     return request(app)
-      .patch("/api/users/USR234567890")
+      .patch("/api/users/664b04a2000e37a4e0f71")
       .send(userUpdate)
       .expect(400)
       .then(({ body }) => {
@@ -295,7 +295,7 @@ describe("POST:/api/bookings/", () => {
 
 describe("DELETE:204 deletes the specified user and sends no body back", () => {
   test("204 - returns the ", () => {
-    return request(app).delete("/api/users/USR345678901").expect(204);
+    return request(app).delete("/api/users/664b04a2000e37a4e0f71").expect(204);
   });
   test("DELETE:404 responds with an appropriate status and error message when given a non-existent id", () => {
     return request(app)
@@ -310,12 +310,11 @@ describe("DELETE:204 deletes the specified user and sends no body back", () => {
 ///////////////////////////////////////////
 
 describe("GET /api/travel_documents/:document_id", () => {
-  test.only("GET status:200, Should get all travel documents with the corrrect data", () => {
+  test("GET status:200, Should get the travel document with the corrrect data", () => {
     return request(app)
-      .get("/api/travel_documents/1234567890abcdef")
+      .get("/api/travel_documents/66508d73001f11fd10c31")
       .expect(200)
       .then(({ body }) => {
-        console.log(body);
         expect(typeof body.$id).toBe("string");
         expect(typeof body.bucketId).toBe("string");
         expect(typeof body.type).toBe("string");
@@ -351,7 +350,6 @@ describe("POST:/api/travel_documents/", () => {
       .send(newDocument)
       .expect(201)
       .then(({ body }) => {
-        console.log(body);
         expect(body.type).toBe(newDocument.type);
         expect(body.name).toEqual(newDocument.name);
       });
@@ -394,9 +392,9 @@ describe("POST:/api/travel_documents/", () => {
 });
 
 describe("DELETE:204 deletes the specified travel document and sends no body back", () => {
-  test.only("204 - returns the ", () => {
+  test("204 - returns the ", () => {
     return request(app)
-      .delete("/api/travel_documents/0987654321fedcba")
+      .delete("/api/travel_documents/66508d73001f11fd10c30")
       .expect(204);
   });
   test("DELETE:404 responds with an appropriate status and error message when given a non-existent id", () => {

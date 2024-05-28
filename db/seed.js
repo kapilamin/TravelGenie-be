@@ -24,23 +24,9 @@ const Itineraries = require("../db/data/testData/Itineraries.json");
 const TravelDocuments = require("../db/data/testData/TravelDocuments.json");
 
 async function seedCollection(collectionId, data) {
-  // await databases.createDocument(
-  //   database_id,
-  //   collectionId,
-  //   "0987654321fedcba",
-  //   {
-  //     documentId: "1122334455667788",
-  //     bucketId: "aabbccddeeff0011",
-  //     updatedAt: "2024-05-24T14:50:15.456+00:00",
-  //     createdAt: "2024-05-24T10:15:00.000+00:00",
-  //     type: "text/plain",
-  //     name: "example-text-1.txt",
-  //   },
-  //   [Permission.read(Role.any()), Permission.write(Role.any())]
-  // );
-  const promises = data.map((item) =>
-    databases
-      .createDocument(database_id, collectionId, ID.unique(), item, [
+  const promises = data.map((item, index) => {
+    return databases
+      .createDocument(database_id, collectionId, collectionId + index, item, [
         Permission.read(Role.any()),
         Permission.write(Role.any()),
       ])
@@ -49,8 +35,8 @@ async function seedCollection(collectionId, data) {
           return;
         }
         throw error;
-      })
-  );
+      });
+  });
 
   await Promise.all(promises).catch((error) => {
     console.error(`Error seeding collection ${collectionId}:`, error);
@@ -60,12 +46,9 @@ async function seedCollection(collectionId, data) {
 async function clearCollection(collectionId) {
   try {
     const response = await databases.listDocuments(database_id, collectionId);
-    const deletePromises = response.documents.map((document) => {
-      // if (document.$id === "0987654321fedcba") {
-      //   return;
-      // }
-      return databases.deleteDocument(database_id, collectionId, document.$id);
-    });
+    const deletePromises = response.documents.map((document) =>
+      databases.deleteDocument(database_id, collectionId, document.$id)
+    );
     await Promise.all(deletePromises);
   } catch (error) {
     if (error.type === "document_not_found") {
