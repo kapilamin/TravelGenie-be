@@ -1,23 +1,42 @@
 [
   {
-    "itineraryId": "itinerary123",
-    "type": "hotel",
-    "details": ["Booking details here..."],
-    "createdAt": "2024-05-20T12:00:00.000Z",
-    "updatedAt": "2024-05-20T12:00:00.000Z"
+    "details": ["Seat preference: window", "Meal preference: vegetarian"],
+    "createdAt": "2024-05-19T10:07:50.636",
+    "updatedAt": "2024-05-20T15:08:42.206",
+    "travelDocuments": [
+      "66508d73001f11fd10c31",
+      "66508d73001f11fd10c32",
+      "66508d73001f11fd10c30"
+    ],
+    "selectedInboundFlight": "AB1234",
+    "selectedOutboundFlight": "CD5678",
+    "selectedHotel": "Hotel Sunshine",
+    "selectedExcursions": ["City tour", "Museum visit"],
+    "departDate": "2024-06-01T08:00:00",
+    "returnDate": "2024-06-10T20:00:00"
   },
   {
-    "itineraryId": "itinerary123",
-    "type": "hotel",
-    "details": ["Booking details here..."],
-    "createdAt": "2024-05-20T12:00:01.000Z",
-    "updatedAt": "2024-05-20T12:00:01.000Z"
+    "details": ["Seat preference: aisle", "Special assistance required"],
+    "createdAt": "2024-05-15T09:15:30.000",
+    "updatedAt": "2024-05-16T11:45:00.123",
+    "travelDocuments": ["passport"],
+    "selectedInboundFlight": "EF9012",
+    "selectedOutboundFlight": "GH3456",
+    "selectedHotel": "Beach Resort",
+    "selectedExcursions": ["Snorkeling trip"],
+    "departDate": "2024-07-15T10:30:00",
+    "returnDate": "2024-07-22T22:15:00"
   },
   {
-    "itineraryId": "itinerary123",
-    "type": "hotel",
-    "details": ["Booking details here..."],
-    "createdAt": "2024-05-20T12:00:02.000Z",
-    "updatedAt": "2024-05-20T12:00:02.000Z"
+    "details": ["Seat preference: middle", "Meal preference: vegan"],
+    "createdAt": "2024-05-18T12:20:10.456",
+    "updatedAt": "2024-05-19T14:32:25.789",
+    "travelDocuments": ["passport", "vaccination certificate"],
+    "selectedInboundFlight": "IJ7890",
+    "selectedOutboundFlight": "KL1234",
+    "selectedHotel": "Mountain Lodge",
+    "selectedExcursions": ["Hiking tour", "Nature walk"],
+    "departDate": "2024-08-05T07:45:00",
+    "returnDate": "2024-08-15T19:00:00"
   }
 ]

@@ -5,7 +5,7 @@
     "updatedAt": "2024-05-24T12:43:29.606+00:00",
     "createdAt": "2024-05-24T12:00:00.000+00:00",
     "type": "image/jpeg",
-    "name": "example-image-1.jpg"
+    "name": "hotel reservation"
   },
   {
     "documentId": "0987654321fedcba",
@@ -13,7 +13,7 @@
     "updatedAt": "2024-05-24T13:45:10.123+00:00",
     "createdAt": "2024-05-24T11:30:00.000+00:00",
     "type": "application/pdf",
-    "name": "example-document-1.pdf"
+    "name": "visa"
   },
   {
     "documentId": "1122334455667788",
@@ -21,6 +21,6 @@
     "updatedAt": "2024-05-24T14:50:15.456+00:00",
     "createdAt": "2024-05-24T10:15:00.000+00:00",
     "type": "text/plain",
-    "name": "example-text-1.txt"
+    "name": "passport"
   }
 ]

@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require ('cors')
+const cors = require("cors");
 
 const {
   getFlights,
@@ -14,7 +14,7 @@ const {
   updateUserById,
   getTravelDocumentsById,
   postTravelDocument,
-  deleteTravelDocumentsById
+  deleteTravelDocumentsById,
 } = require("./controllers/app.controllers");
 
 const app = express();
@@ -35,8 +35,6 @@ app.delete("/api/users/:user_id", deleteUser);
 app.get("/api/bookings", getBookings);
 app.get("/api/bookings/:booking_id", getBookingbyId);
 app.post("/api/bookings", postBooking);
-
-app.get("/api/flights", getFlights);
 
 // travel documents
 app.get("/api/travel_documents/:document_id", getTravelDocumentsById);

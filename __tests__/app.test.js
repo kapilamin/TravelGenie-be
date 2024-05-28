@@ -34,9 +34,13 @@ describe("GET /api/bookings", () => {
         expect(body.length).toBe(3);
         body.forEach((booking) => {
           expect(typeof booking.$id).toBe("string");
-          expect(typeof booking.itineraryId).toBe("string");
-          expect(typeof booking.type).toBe("string");
+          expect(typeof booking.selectedInboundFlight).toBe("string");
+          expect(typeof booking.selectedOutboundFlight).toBe("string");
+          expect(typeof booking.selectedHotel).toBe("string");
+          expect(typeof booking.departDate).toBe("string");
+          expect(typeof booking.returnDate).toBe("string");
           expect(Array.isArray(booking.details)).toBe(true);
+          expect(Array.isArray(booking.selectedExcursions)).toBe(true);
           expect(typeof booking.createdAt).toBe("string");
           expect(typeof booking.updatedAt).toBe("string");
         });
@@ -51,9 +55,13 @@ describe("GET /api/bookings/:booking_id", () => {
       .expect(200)
       .then(({ body }) => {
         expect(typeof body.$id).toBe("string");
-        expect(typeof body.itineraryId).toBe("string");
-        expect(typeof body.type).toBe("string");
+        expect(typeof body.selectedInboundFlight).toBe("string");
+        expect(typeof body.selectedOutboundFlight).toBe("string");
+        expect(typeof body.selectedHotel).toBe("string");
+        expect(typeof body.departDate).toBe("string");
+        expect(typeof body.returnDate).toBe("string");
         expect(Array.isArray(body.details)).toBe(true);
+        expect(Array.isArray(body.selectedExcursions)).toBe(true);
         expect(typeof body.createdAt).toBe("string");
         expect(typeof body.updatedAt).toBe("string");
       });
@@ -243,11 +251,16 @@ describe("POST:/api/users/", () => {
 describe("POST:/api/bookings/", () => {
   test("POST 201 returns the posted item", () => {
     const newBooking = {
-      itineraryId: "itinerary456",
-      type: "flight",
-      details: ["Booking details here..."],
-      createdAt: "2024-05-22T08:30:00.000Z",
-      updatedAt: "2024-05-22T08:30:00.000Z",
+      details: ["Seat preference: window", "No special meal requests"],
+      createdAt: "2024-05-20T14:05:50.123",
+      updatedAt: "2024-05-21T09:18:30.456",
+      travelDocuments: ["passport", "travel insurance"],
+      selectedInboundFlight: "MN5678",
+      selectedOutboundFlight: "OP9101",
+      selectedHotel: "City Central Hotel",
+      selectedExcursions: ["River cruise", "Historical tour"],
+      departDate: "2024-09-10T06:50:00",
+      returnDate: "2024-09-20T21:30:00",
     };
     return request(app)
       .post("/api/bookings")
