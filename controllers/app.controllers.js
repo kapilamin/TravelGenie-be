@@ -107,7 +107,7 @@ function updateUserById(req, res, next) {
 }
 
 function postUser(req, res, next) {
-  const { user } = req.body;
+  const user = req.body;
 
   insertUser(user)
     .then((user) => {

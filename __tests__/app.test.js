@@ -189,7 +189,6 @@ describe("POST:/api/users/", () => {
       .send(newUser)
       .expect(201)
       .then(({ body }) => {
-        console.log(body, "<<<<<<<<<");
         expect(body.username).toBe(newUser.username);
         expect(body.email).toEqual(newUser.email);
       });

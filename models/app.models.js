@@ -81,15 +81,15 @@ function fetchUserById(user_id) {
     });
 }
 function insertUser(user) {
+  console.log(user, "<<<<<<<<<<");
   return databases
     .createDocument(database_id, users_collection_id, ID.unique(), user, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
     .then((response) => {
-      console.log(response, "HEREEEEEEEEEEE");
+      console.log(response);
       return response;
-      s;
     });
 }
 function patchUser(user_id, userUpdate) {
