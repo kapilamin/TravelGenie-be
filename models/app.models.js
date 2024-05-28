@@ -17,7 +17,6 @@ const {
   travel_documents_collection_id,
 } = require("../db/appwrite.config");
 
-// LISTING DOCUMENTS
 function fetchFlights() {
   return databases
     .listDocuments(database_id, flights_collection_id)
@@ -81,14 +80,12 @@ function fetchUserById(user_id) {
     });
 }
 function insertUser(user) {
-  console.log(user, "<<<<<<<<<<");
   return databases
     .createDocument(database_id, users_collection_id, ID.unique(), user, [
       Permission.read(Role.any()),
       Permission.write(Role.any()),
     ])
     .then((response) => {
-      console.log(response);
       return response;
     });
 }
@@ -99,8 +96,6 @@ function patchUser(user_id, userUpdate) {
       return response;
     });
 }
-
-///////////////////////////////////////////////
 
 function fetchTravelDocumentsById(documentId) {
   return databases
@@ -131,35 +126,6 @@ function insertTravelDocument(document) {
       return response;
     });
 }
-
-////// HOW TO ADD REALATIONSHIP
-
-// function addRelationship(
-//   database_id,
-//   booking_collection_id,
-//   document_id,
-//   update
-// ) {
-//   console.log("Function Invoked......");
-//   return databases
-//     .updateDocument(database_id, booking_collection_id, document_id, update)
-//     .then((response) => {
-//       console.log(response);
-//       return response;
-//     });
-// }
-// addRelationship(
-//   "664b0461000136d40330",
-//   "664b11a7003b76702fe8",
-//   "664b11a7003b76702fe82",
-//   {
-//     travelDocuments: [
-//       "66508d73001f11fd10c31",
-//       "66508d73001f11fd10c32",
-//       "66508d73001f11fd10c30",
-//     ],
-//   }
-// );
 
 module.exports = {
   fetchFlights,

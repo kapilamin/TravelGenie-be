@@ -2,24 +2,21 @@
   {
     "documentId": "1234567890abcdef",
     "bucketId": "abcdef1234567890",
-    "updatedAt": "2024-05-24T12:43:29.606+00:00",
-    "createdAt": "2024-05-24T12:00:00.000+00:00",
+
     "type": "image/jpeg",
     "name": "hotel reservation"
   },
   {
     "documentId": "0987654321fedcba",
     "bucketId": "fedcba0987654321",
-    "updatedAt": "2024-05-24T13:45:10.123+00:00",
-    "createdAt": "2024-05-24T11:30:00.000+00:00",
+
     "type": "application/pdf",
     "name": "visa"
   },
   {
     "documentId": "1122334455667788",
     "bucketId": "aabbccddeeff0011",
-    "updatedAt": "2024-05-24T14:50:15.456+00:00",
-    "createdAt": "2024-05-24T10:15:00.000+00:00",
+
     "type": "text/plain",
     "name": "passport"
   }

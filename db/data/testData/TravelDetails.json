@@ -1,7 +1,5 @@
 [
   {
-    "createdAt": "2024-05-20T12:00:00.000Z",
-    "updatedAt": "2024-05-20T12:00:00.000Z",
     "interests": ["hiking", "museums", "food"],
     "location": "Paris, France",
     "budget": 1500,
@@ -10,8 +8,6 @@
     "itineraries": "ITR123456789"
   },
   {
-    "createdAt": "2024-05-20T12:00:01.000Z",
-    "updatedAt": "2024-05-20T12:00:01.000Z",
     "interests": ["sightseeing", "shopping", "nightlife"],
     "location": "Paris, France",
     "budget": 2000,
@@ -20,8 +16,6 @@
     "itineraries": "ITR234567890"
   },
   {
-    "createdAt": "2024-05-20T12:00:02.000Z",
-    "updatedAt": "2024-05-20T12:00:02.000Z",
     "interests": ["cultural experiences", "architecture", "local cuisine"],
     "location": "Paris, France",
     "budget": 1800,

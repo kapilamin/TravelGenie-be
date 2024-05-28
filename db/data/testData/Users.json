@@ -3,8 +3,7 @@
     "username": "johndoe",
     "email": "johndoe@example.com",
     "password": "hashed_password",
-    "created_at": "2024-05-20T12:00:00.000Z",
-    "updated_at": "2024-05-20T12:00:00.000Z",
+
     "flights": [],
     "accommodation": [],
     "bookings": [],
@@ -16,8 +15,7 @@
     "username": "janedoe",
     "email": "janedoe@example.com",
     "password": "hashed_password",
-    "created_at": "2024-05-20T12:00:01.000Z",
-    "updated_at": "2024-05-20T12:00:00.000Z",
+
     "flights": [],
     "accommodation": [],
     "bookings": [],
@@ -29,8 +27,7 @@
     "username": "alice",
     "email": "alice@example.com",
     "password": "hashed_password",
-    "created_at": "2024-05-20T12:00:02.000Z",
-    "updated_at": "2024-05-20T12:00:00.000Z",
+
     "flights": [],
     "accommodation": [],
     "bookings": [],
