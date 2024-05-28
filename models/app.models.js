@@ -87,6 +87,7 @@ function insertUser(user) {
       Permission.write(Role.any()),
     ])
     .then((response) => {
+      console.log(response, "HEREEEEEEEEEEE");
       return response;
       s;
     });

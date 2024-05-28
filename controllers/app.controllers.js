@@ -10,7 +10,7 @@ const {
   patchUser,
   fetchTravelDocumentsById,
   removeTravelDocument,
-  insertTravelDocument
+  insertTravelDocument,
 } = require("../models/app.models");
 const endpoints = require("../endpoints.json");
 
@@ -107,7 +107,7 @@ function updateUserById(req, res, next) {
 }
 
 function postUser(req, res, next) {
-  const user = req.body;
+  const { user } = req.body;
 
   insertUser(user)
     .then((user) => {
@@ -167,5 +167,5 @@ module.exports = {
   updateUserById,
   getTravelDocumentsById,
   postTravelDocument,
-  deleteTravelDocumentsById
+  deleteTravelDocumentsById,
 };

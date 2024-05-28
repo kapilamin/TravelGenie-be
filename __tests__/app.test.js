@@ -176,7 +176,7 @@ describe("PATCH:/api/users/:user_id", () => {
 });
 /////////
 describe("POST:/api/users/", () => {
-  test("POST 201 returns the posted item", () => {
+  test.only("POST 201 returns the posted item", () => {
     const newUser = {
       username: "johnsmith",
       email: "johnsmith@example.com",
@@ -189,8 +189,9 @@ describe("POST:/api/users/", () => {
       .send(newUser)
       .expect(201)
       .then(({ body }) => {
-        expect(body.type).toBe(newUser.type);
-        expect(body.details).toEqual(newUser.details);
+        console.log(body, "<<<<<<<<<");
+        expect(body.username).toBe(newUser.username);
+        expect(body.email).toEqual(newUser.email);
       });
   });
 
