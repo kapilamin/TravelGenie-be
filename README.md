@@ -56,7 +56,7 @@ Due to the nature of the Spotify API this process is relatively lengthy, however
     TRAVEL_DOCUMENTS_COLLECTION_ID= ...
 
     ```
-5. **Host on Render:** Follow these [instructions](https://docs.render.com/web-services) at the Create a Render App section. The environment variables should be set as above including `NODE_ENV` as `production`.
+5. **Host on Render:** Follow these [instructions](https://docs.render.com/web-services). The environment variables should be set as above including `NODE_ENV` as `production`.
 6. **Set Up Frontend:** Once the server on Render is running correctly, refer to the [Frontend instructions](https://github.com/kapilamin/TravelGenie-fe).
 ## Contributors
 - Kapil Amin [@kapilamin](https://github.com/kapilamin)
