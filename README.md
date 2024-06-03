@@ -22,7 +22,6 @@ For an overview of our app, please refer to the [frontend repository](https://gi
 - **DELETE /api/travel_documents/:document_id** - Delete a travel document by document ID.
 ## Set up
 Below are instructions on how to run our app locally. 
-Due to the nature of the Spotify API this process is relatively lengthy, however, following the steps below should help you through the process.
 
 1. **Clone the Repository:** Clone this repository to your local machine using `git clone`.
 2. **Install Dependencies:** Navigate to the project directory and install dependencies by running `npm install`.
